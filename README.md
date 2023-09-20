@@ -55,5 +55,5 @@ Looks like it is better to follow the next steps:
 - implement the moving of the cars on the road
 - implement the control of the cars moving(idea described above)
 
-To implement cars texture, it is better to use square texture, and rotate it on 90 degrees, if needed, to show the car in right direction.  
+To implement cars texture, it is better to use square texture, and rotate it on (+|-)90 degrees(or use the frame/texture for rotated car, to prevent pixel bluring), if needed, to show the car in right direction.  
 Also the car texture size must be not wider than the road width(better to make them the same width/height), and on the right/left side from the car texture pixels must be transparent. This will allow to prevent weird results on screen , which we can see in example video from 01-edu, where on 0.12 sec one car hit another car, which is road accident(not desirable case for the ... smart ... road system).
