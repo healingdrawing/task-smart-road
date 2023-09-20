@@ -1,0 +1,1 @@
+create the unique folder inside this folder and put any side stuff files you work with. It can be not ready to use code files, notes, sources to generate assets etc.
