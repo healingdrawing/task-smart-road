@@ -4,48 +4,48 @@ use macroquad::math::Vec2;
 use rand::Rng;
 
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
-pub enum Direction {
-    North,
-    East,
-    South,
-    West,
+pub enum To {
+    /** North*/ N,
+    /** East */ E,
+    /** South*/ S,
+    /** West */ W,
 }
 
-impl Direction {
-    pub fn destination(&self, going_to: Going) -> Direction {
-        match (self, going_to) {
-            (Direction::North, Going::Straight) => Direction::South,
-            (Direction::North, Going::Left) => Direction::East,
-            (Direction::North, Going::Right) => Direction::West,
+impl To {
+    pub fn destination(&self, turn: Turn) -> To {
+        match (self, turn) {
+            (To::N, Turn::No) => To::N,
+            (To::N, Turn::L) => To::W,
+            (To::N, Turn::R) => To::E,
 
-            (Direction::East, Going::Straight) => Direction::West,
-            (Direction::East, Going::Left) => Direction::South,
-            (Direction::East, Going::Right) => Direction::North,
+            (To::E, Turn::No) => To::E,
+            (To::E, Turn::L) => To::N,
+            (To::E, Turn::R) => To::S,
 
-            (Direction::South, Going::Straight) => Direction::North,
-            (Direction::South, Going::Left) => Direction::West,
-            (Direction::South, Going::Right) => Direction::East,
+            (To::S, Turn::No) => To::S,
+            (To::S, Turn::L) => To::E,
+            (To::S, Turn::R) => To::W,
 
-            (Direction::West, Going::Straight) => Direction::East,
-            (Direction::West, Going::Left) => Direction::North,
-            (Direction::West, Going::Right) => Direction::South,
+            (To::W, Turn::No) => To::W,
+            (To::W, Turn::L) => To::S,
+            (To::W, Turn::R) => To::N,
         }
     }
 }
 
 #[derive(Debug, Eq, PartialEq, Copy, Clone)]
-pub enum Going {
-    Straight,
-    Right,
-    Left,
+pub enum Turn {
+    No,
+    R,
+    L,
 }
 
-pub const GOING: [Going; 3] = [Going::Straight, Going::Right, Going::Left];
+pub const TURN: [Turn; 3] = [Turn::No, Turn::R, Turn::L];
 
 #[derive(Debug)]
 pub struct Car {
-    pub coming_from: Direction,
-    pub going: Going,
+    pub going_to: To,
+    pub turn: Turn,
 
     /// Position of the front left corner of the car
     pub pos: Vec2,
@@ -57,16 +57,16 @@ pub struct Car {
 }
 
 impl Car {
-    pub fn new(coming_from: Direction) -> Car {
-        let going = GOING[rand::thread_rng().gen_range(0..GOING.len())];
+    pub fn new(going_to: To) -> Car {
+        let turn = TURN[rand::thread_rng().gen_range(0..TURN.len())];
 
-        let path = Path::new(coming_from, going);
+        let path = Path::new(going_to, turn);
 
         let first_point = path.point(0).unwrap();
 
         Self {
-            coming_from,
-            going,
+            going_to,
+            turn,
             point_index: 0,
 
             pos: first_point,
@@ -79,11 +79,11 @@ impl Car {
     }
 
     pub fn border_distance(&self) -> f32 {
-        match self.coming_from {
-            Direction::North => self.pos.y,
-            Direction::East => WINDOW_SIZE as f32 - self.pos.x,
-            Direction::South => WINDOW_SIZE as f32 - self.pos.y,
-            Direction::West => self.pos.x,
+        match self.going_to {
+            To::N => self.pos.y,
+            To::E => WINDOW_SIZE as f32 - self.pos.x,
+            To::S => WINDOW_SIZE as f32 - self.pos.y,
+            To::W => self.pos.x,
         }
     }
 

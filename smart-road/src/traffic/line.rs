@@ -1,5 +1,5 @@
 use crate::config::{CAR_LENGTH, CAR_SAFE_DISTANCE};
-use crate::traffic::{Car, Direction, Going, Path};
+use crate::traffic::{Car, To, Turn, Path};
 
 #[derive(Debug, Eq, PartialEq)]
 pub enum Light {
@@ -9,7 +9,7 @@ pub enum Light {
 
 #[derive(Debug)]
 pub struct Line {
-    pub coming_from: Direction,
+    pub coming_from: To,
 
     pub cars: Vec<Car>,
     pub light: Light,
@@ -17,16 +17,16 @@ pub struct Line {
     pub paths: [Path; 3],
 }
 
-fn get_path(paths: &[Path; 3], going: Going) -> &Path {
+fn get_path(paths: &[Path; 3], going: Turn) -> &Path {
     match going {
-        Going::Straight => &paths[0],
-        Going::Left => &paths[1],
-        Going::Right => &paths[2],
+        Turn::No => &paths[0],
+        Turn::L => &paths[1],
+        Turn::R => &paths[2],
     }
 }
 
 impl Line {
-    pub fn new(coming_from: Direction, light: Light) -> Self {
+    pub fn new(coming_from: To, light: Light) -> Self {
         Line {
             coming_from,
             light,
@@ -34,9 +34,9 @@ impl Line {
             cars: Vec::new(),
 
             paths: [
-                Path::new(coming_from, Going::Straight),
-                Path::new(coming_from, Going::Left),
-                Path::new(coming_from, Going::Right),
+                Path::new(coming_from, Turn::No),
+                Path::new(coming_from, Turn::L),
+                Path::new(coming_from, Turn::R),
             ],
         }
     }
@@ -52,7 +52,7 @@ impl Line {
         let mut prev_car = None;
 
         for car in self.cars.iter_mut() {
-            let path = get_path(&self.paths, car.going);
+            let path = get_path(&self.paths, car.turn);
 
             car.update(path, prev_car, &self.light);
 
@@ -66,7 +66,7 @@ impl Line {
         let prev_car = self
             .cars
             .iter()
-            .rfind(|c| c.coming_from == self.coming_from);
+            .rfind(|c| c.going_to == self.coming_from);
 
         if prev_car.is_none() {
             return true;
@@ -88,7 +88,7 @@ impl Line {
 
     pub fn cleanup_cars(&mut self) {
         self.cars.retain(|car| {
-            let path = get_path(&self.paths, car.going);
+            let path = get_path(&self.paths, car.turn);
             !car.is_done(path)
         })
     }

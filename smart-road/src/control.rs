@@ -1,4 +1,4 @@
-use crate::traffic::{Direction, TrafficState};
+use crate::traffic::{To, TrafficState};
 use macroquad::prelude::*;
 
 pub fn handle_input(traffic_state: &mut TrafficState) {
@@ -7,19 +7,19 @@ pub fn handle_input(traffic_state: &mut TrafficState) {
     }
 
     if is_key_pressed(KeyCode::Up) {
-        traffic_state.add_car(Direction::South);
+        traffic_state.add_car(To::S);
     }
 
     if is_key_pressed(KeyCode::Down) {
-        traffic_state.add_car(Direction::North);
+        traffic_state.add_car(To::N);
     }
 
     if is_key_pressed(KeyCode::Right) {
-        traffic_state.add_car(Direction::West);
+        traffic_state.add_car(To::W);
     }
 
     if is_key_pressed(KeyCode::Left) {
-        traffic_state.add_car(Direction::East);
+        traffic_state.add_car(To::E);
     }
 
     if is_key_pressed(KeyCode::R) {

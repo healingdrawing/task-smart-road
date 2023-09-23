@@ -18,7 +18,7 @@ pub const CAR_SPEED: f32 = 3.0;
 
 pub fn window_conf() -> Conf {
     Conf {
-        window_title: "Road Intersection | Grit:lab".to_owned(),
+        window_title: "task smart-road".to_owned(),
         window_width: WINDOW_SIZE,
         window_height: WINDOW_SIZE,
         window_resizable: false,
@@ -41,3 +41,4 @@ pub const BOTTOM_RIGHT: Vec2 = Vec2::new(
     WINDOW_SIZE as f32 - STRAIGHT_LENGTH,
     WINDOW_SIZE as f32 - STRAIGHT_LENGTH,
 );
+

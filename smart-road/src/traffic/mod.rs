@@ -4,7 +4,7 @@ mod line;
 mod path;
 mod state;
 
-pub use car::{Car, Direction, Going};
+pub use car::{Car, To, Turn};
 
 pub use state::TrafficState;
 
