@@ -1,4 +1,4 @@
-use crate::config::{BOTTOM_LEFT, BOTTOM_RIGHT, LIGHTS_SIZE, TOP_LEFT, TOP_RIGHT};
+/* use crate::config::{BOTTOM_LEFT, BOTTOM_RIGHT, LIGHTS_SIZE, TOP_LEFT, TOP_RIGHT};
 use crate::draw::Textures;
 use crate::traffic::{Direction, Light, Line};
 use macroquad::prelude::*;
@@ -29,3 +29,4 @@ pub fn draw_light(line: &Line, textures: &Textures) {
         },
     );
 }
+ */

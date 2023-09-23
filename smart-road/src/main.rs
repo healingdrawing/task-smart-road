@@ -9,7 +9,7 @@ use config::window_conf;
 
 use control::handle_input;
 
-use crate::draw::{draw_light, draw_path, draw_roads, Textures};
+use crate::draw::{/* draw_light, */ draw_path, draw_roads, Textures};
 use crate::traffic::TrafficState;
 use draw::draw_car;
 
@@ -29,7 +29,7 @@ async fn main() {
         draw_roads(&textures);
 
         for line in traffic_state.lines.iter() {
-            draw_light(line, &textures);
+            // draw_light(line, &textures);
 
             for path in line.paths.iter() {
                 draw_path(path);
