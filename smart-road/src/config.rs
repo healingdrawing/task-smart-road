@@ -42,3 +42,18 @@ pub const BOTTOM_RIGHT: Vec2 = Vec2::new(
     WINDOW_SIZE as f32 - STRAIGHT_LENGTH,
 );
 
+//todo remove later. new code injection
+
+/** cell size of the box along x and y axes. Plan to use in lot of cases.
+ * Width of the road(one lane).
+ * Size of the car sprite with safe empty pixels around.
+ * Distance between cars destination coordinates in the line,
+ * before car starts move cross road
+ * */
+pub const X:u16 = 96;
+
+/// First element includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn. South direction is 0.
+/// Other elements is the coordinates of the path points x and y respectively.
+/**start to south then turn to south(no turn).*/
+pub const PATH_SS: [[u16;2]; 5] = [[0,0],[4*X,0],[4*X,1*X],[4*X,2*X],[4*X,11*X]];
+
