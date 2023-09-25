@@ -33,7 +33,12 @@ pub struct Way {
     pub es: [[u16;2]; 6],
     pub wn: [[u16;2]; 6],
     
-    // now declare the arrays which represent the every point of each way, to check is it free
+    /* now declare the arrays which represent the every point of each way,
+    to check is it free, for car moving.
+    The iteration must be from the last point to the first point of the way,
+    to free the way from previous car position,
+    for check the next car able to move
+    */
     pub free_ss: [[bool;2]; 5],
     pub free_nn: [[bool;2]; 5],
     pub free_ww: [[bool;2]; 5],
