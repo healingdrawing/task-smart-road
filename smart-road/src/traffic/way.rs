@@ -1,19 +1,22 @@
-use crate::config::CS;
+use crate::config::{CS,CM};
 
 /// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn.
 /// South(screen bottom) direction is 0 degrees.
 /// Other elements is the coordinates of the path points x and y respectively.
 /**
- * SS means start to south then turn to south(no turn).
- * SE means start to south then turn to east(turn left).
+ * ss means start to south then turn to south(no turn).
+ * se means start to south then turn to east(turn left).
  * 
- * free_SS means the array of [bool,bool] for each point in SS, to manage place
- * for car moving. The first element with index zero includes array
- * of two boolean, where the free_SS[0][0] means means the boolean
- * for the control the global condition of the SS line, is the SS opens for
- * car moving over cross road, or another way turn now. The second element of the
- * SS[0][0] does not used at the moment.
- * The free_SS parameter condition will be mutated by the smart road.
+ * free_ss means the array of \[bool,bool\] for each point in ss, to manage place
+ * for car moving.
+ * The first element with index zero free_ss\[0\] includes array
+ * of two boolean, where the free_ss\[0\]\[0\] means the boolean
+ * for the control the global condition of the ss line (is the ss opens for
+ * car moving over cross road, or another way turn now).
+ * The ss\[0\]\[1\] does not used at the moment.
+ * The free_ss parameter condition will be mutated by the smart road.
+ * 
+ * sum_ss means the full distance of the ss way in meters(converted from pixels)
  */
 pub struct Way {
     //controllable using queue and switcher
@@ -43,14 +46,29 @@ pub struct Way {
     pub free_nn: [[bool;2]; 5],
     pub free_ww: [[bool;2]; 5],
     pub free_ee: [[bool;2]; 5],
+
     pub free_se: [[bool;2]; 6],
     pub free_nw: [[bool;2]; 6],
     pub free_ws: [[bool;2]; 6],
     pub free_en: [[bool;2]; 6],
+
     pub free_sw: [[bool;2]; 6],
     pub free_ne: [[bool;2]; 6],
     pub free_es: [[bool;2]; 6],
     pub free_wn: [[bool;2]; 6],
+    // full distances for each way in meters(based on converted pixels)
+    pub sum_ss: u16,
+    pub sum_nn: u16,
+    pub sum_ww: u16,
+    pub sum_ee: u16,
+    pub sum_se: u16,
+    pub sum_nw: u16,
+    pub sum_ws: u16,
+    pub sum_en: u16,
+    pub sum_sw: u16,
+    pub sum_ne: u16,
+    pub sum_es: u16,
+    pub sum_wn: u16,
 }
 
 impl Way {
@@ -86,6 +104,22 @@ impl Way {
             free_ne: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
             free_es: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
             free_wn: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
+            // full distances for each way in meters(based on converted pixels)
+            // forward ways
+            sum_ss: 11*CM,
+            sum_nn: 11*CM,
+            sum_ww: 11*CM,
+            sum_ee: 11*CM,
+            // turn left ways
+            sum_se: 12*CM,
+            sum_nw: 12*CM,
+            sum_ws: 12*CM,
+            sum_en: 12*CM,
+            // turn right ways
+            sum_sw: 6*CM,
+            sum_ne: 6*CM,
+            sum_es: 6*CM,
+            sum_wn: 6*CM,
         }
     }
 }

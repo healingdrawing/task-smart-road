@@ -52,6 +52,10 @@ pub const BOTTOM_RIGHT: Vec2 = Vec2::new(
  * */
 pub const CS:u16 = 96;
 
+/**how many meters in one cell
+ * let it be 4 meters(24px per meter). For statistic needs
+ */
+pub const CM:u16 = 4;
 
 pub const PATH_SS: [[u16;2]; 5] = [[0,0],[4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]];
 
