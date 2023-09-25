@@ -3,6 +3,7 @@ mod curve;
 mod line;
 mod path;
 mod state;
+mod way;
 
 pub use car::{Car, To, Turn};
 
