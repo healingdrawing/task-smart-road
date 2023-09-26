@@ -4,6 +4,7 @@ mod line;
 mod path;
 mod state;
 mod way;
+mod auto;
 
 pub use car::{Car, To, Turn};
 
