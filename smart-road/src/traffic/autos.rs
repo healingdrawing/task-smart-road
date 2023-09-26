@@ -25,7 +25,7 @@ use crate::traffic::stack::LimitedStack;
 }
 
 impl Autos{
-   fn new()->Autos{
+   pub fn new()->Autos{
     Autos{
       ss:LimitedStack::new(4),
       nn:LimitedStack::new(4),
