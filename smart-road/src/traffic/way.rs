@@ -18,7 +18,8 @@ use crate::config::{CS,CM};
  * 
  * sum_ss means the full distance of the ss way in meters(converted from pixels)
  */
-pub struct Way {
+#[derive(Debug)]
+ pub struct Way {
     //controllable using queue and switcher
     //forward
     pub ss: [[u16;2]; 5],
@@ -72,7 +73,7 @@ pub struct Way {
 }
 
 impl Way {
-    pub fn new() -> Way {
+     fn new() -> Way {
         Way {
             //move forward
             ss: [[0,0], [4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]],

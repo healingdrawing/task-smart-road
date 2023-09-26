@@ -1,4 +1,5 @@
 
+#[derive(Debug)]
 pub struct Auto{
   pub start_x:u16, // start point of the way(between two way points)
   pub start_y:u16,

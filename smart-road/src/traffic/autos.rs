@@ -6,7 +6,8 @@ use crate::traffic::stack::LimitedStack;
  * because the first element of the way is not a point
  * but rotation angles for texture
  */
-pub struct Autos{
+#[derive(Debug)]
+ pub struct Autos{
   pub ss:LimitedStack<Auto>,
   pub nn:LimitedStack<Auto>,
   pub ww:LimitedStack<Auto>,
@@ -24,7 +25,7 @@ pub struct Autos{
 }
 
 impl Autos{
-  pub fn new()->Autos{
+   fn new()->Autos{
     Autos{
       ss:LimitedStack::new(4),
       nn:LimitedStack::new(4),
