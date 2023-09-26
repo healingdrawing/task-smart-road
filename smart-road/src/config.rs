@@ -57,5 +57,5 @@ pub const CS:u16 = 96;
  */
 pub const CM:u16 = 4;
 
-pub const PATH_SS: [[u16;2]; 5] = [[0,0],[4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]];
+pub const PXS:u32 = 96; // pixels per second, slow speed of the car
 
