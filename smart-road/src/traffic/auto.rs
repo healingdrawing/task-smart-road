@@ -68,23 +68,26 @@ pub struct Autos{
   pub wn:LimitedStack<Auto>,
 }
 
+/** capacity for each stack is length of the way minus one,
+ * because the first element of the way is not a point
+ * but rotation angles for texture*/
 impl Autos{
   pub fn new()->Autos{
     Autos{
-      ss:LimitedStack::new(5),
-      nn:LimitedStack::new(5),
-      ww:LimitedStack::new(5),
-      ee:LimitedStack::new(5),
+      ss:LimitedStack::new(4),
+      nn:LimitedStack::new(4),
+      ww:LimitedStack::new(4),
+      ee:LimitedStack::new(4),
 
-      se:LimitedStack::new(6),
-      nw:LimitedStack::new(6),
-      ws:LimitedStack::new(6),
-      en:LimitedStack::new(6),
+      se:LimitedStack::new(5),
+      nw:LimitedStack::new(5),
+      ws:LimitedStack::new(5),
+      en:LimitedStack::new(5),
 
-      sw:LimitedStack::new(6),
-      ne:LimitedStack::new(6),
-      es:LimitedStack::new(6),
-      wn:LimitedStack::new(6),
+      sw:LimitedStack::new(5),
+      ne:LimitedStack::new(5),
+      es:LimitedStack::new(5),
+      wn:LimitedStack::new(5),
     }
   }
 }
