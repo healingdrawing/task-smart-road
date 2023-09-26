@@ -5,6 +5,8 @@ mod path;
 mod state;
 mod way;
 mod auto;
+mod stack;
+mod autos;
 
 pub use car::{Car, To, Turn};
 
