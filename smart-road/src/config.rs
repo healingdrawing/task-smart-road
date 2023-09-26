@@ -57,5 +57,6 @@ pub const CS:u16 = 96;
  */
 pub const CM:u16 = 4;
 
-pub const PXS:u32 = 96; // pixels per second, slow speed of the car
+/** pixels per second, slow speed of the car */
+pub const PXS:f32 = 96.0;
 
