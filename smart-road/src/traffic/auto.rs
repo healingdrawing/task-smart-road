@@ -101,7 +101,6 @@ impl Auto{
       } else if self.sign_y == 0.0 && self.sign_x != 0.0 {
         self.texture_angle = (if self.sign_x == 1.0 { 270.0f32 } else { 90.0f32 }).to_radians()
       }
-      
     }
   }
 
