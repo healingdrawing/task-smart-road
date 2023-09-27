@@ -22,7 +22,12 @@ async fn main() {
 
     let mut autos = Autos::new();
     autos.ss.push(Auto::new(100f32,100f32,0f32,&textures.auto));
-    autos.ss.iter_mut().for_each(|auto| if auto.x == 100f32 {auto.animate_to(300f32, 300f32, 1f32)});
+    autos.ss.push(Auto::new(200f32,100f32,0f32,&textures.auto));
+    
+    autos.ss.iter_mut().for_each(|auto|
+        if auto.x == 100f32 {auto.animate_to(100f32, 300f32, 1f32)}
+        else{auto.animate_to(100f32, 100f32, 1f32)}
+    );
 
 
 

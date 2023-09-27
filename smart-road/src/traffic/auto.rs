@@ -99,7 +99,7 @@ impl Auto{
       if self.sign_x == 0.0 && self.sign_y != 0.0 {
         self.texture_angle = if self.sign_y == 1.0 { 0.0f32 } else { 180.0f32 }.to_radians()
       } else if self.sign_y == 0.0 && self.sign_x != 0.0 {
-        self.texture_angle = (if self.sign_x == 1.0 { 90.0f32 } else { 270.0f32 }).to_radians()
+        self.texture_angle = (if self.sign_x == 1.0 { 270.0f32 } else { 90.0f32 }).to_radians()
       }
       
     }
