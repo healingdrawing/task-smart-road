@@ -73,7 +73,7 @@ use crate::config::{CS,CM};
 }
 
 impl Way {
-  fn new() -> Way {
+  pub fn new() -> Way {
   Way {
     //move forward
     ss: [[0,0], [4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]],

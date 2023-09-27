@@ -7,6 +7,7 @@ mod way;
 mod auto;
 mod stack;
 mod autos;
+mod calc;
 
 pub use car::{Car, To, Turn};
 
