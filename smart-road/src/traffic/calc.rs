@@ -1,7 +1,7 @@
 use crate::traffic::way::Way;
 
 pub struct Calc{
-  way: Way,
+  pub way: Way,
 }
 
 impl Calc {
@@ -10,4 +10,6 @@ impl Calc {
             way: Way::new(),
         }
     }
+
+    
 }
