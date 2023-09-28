@@ -1,15 +1,24 @@
+use crate::draw::Textures;
 use crate::traffic::way::Way;
+use crate::traffic::autos::Autos;
 
-pub struct Calc{
+pub struct Calc<'a> {
   pub way: Way,
+  pub autos: Autos,
+  pub textures: &'a Textures,
 }
 
-impl Calc {
-    pub fn new() -> Self {
-        Self {
-            way: Way::new(),
-        }
+impl<'a> Calc<'a> {
+  pub fn new(textures: &'a Textures) -> Self {
+    Self {
+      way: Way::new(),
+      autos: Autos::new(),
+      textures,
     }
+  }
 
-    
+  pub fn update(&mut self) {
+    self.autos.ss.iter_mut().for_each(|auto| auto.animate_step());
+    println!("update");
+  }
 }
