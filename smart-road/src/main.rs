@@ -35,7 +35,7 @@ async fn main() {
 
 
   loop {
-    handle_input(&mut traffic_state);
+    handle_input(&mut traffic_state, &mut calc);
 
     traffic_state.update();
 

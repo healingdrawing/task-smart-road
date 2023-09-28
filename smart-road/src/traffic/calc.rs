@@ -21,4 +21,10 @@ impl<'a> Calc<'a> {
     self.autos.ss.iter_mut().for_each(|auto| auto.animate_step());
     println!("update");
   }
+
+  /** input handler call this method */
+  pub fn try_add_auto_random(&mut self) {
+    // self.autos.add_auto_random();
+    println!("add_auto_random calc.rs");
+  }
 }
