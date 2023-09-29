@@ -1,4 +1,4 @@
-use crate::traffic::{To, Light, Line};
+use crate::traffic::{Direction, Light, Line};
 use macroquad::prelude::get_frame_time;
 
 use crate::config::{BOTTOM_RIGHT, /* LIGHTS_TIMEOUT, */ TOP_LEFT};
@@ -17,10 +17,10 @@ impl TrafficState {
             switch_timer: 0.0,
 
             lines: [
-                Line::new(To::N, Light::Green),
-                Line::new(To::E, Light::Red),
-                Line::new(To::S, Light::Red),
-                Line::new(To::W, Light::Red),
+                Line::new(Direction::N, Light::Green),
+                Line::new(Direction::E, Light::Red),
+                Line::new(Direction::S, Light::Red),
+                Line::new(Direction::W, Light::Red),
             ],
         }
     }
@@ -65,7 +65,7 @@ impl TrafficState {
         self.lines.iter_mut().for_each(|line| line.update());
     }
 
-    pub fn add_car(&mut self, coming_from: To) {
+    pub fn add_car(&mut self, coming_from: Direction) {
         let line = self
             .lines
             .iter_mut()

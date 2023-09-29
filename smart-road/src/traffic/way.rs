@@ -1,5 +1,13 @@
 use crate::config::{CS,CM};
 
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
+pub enum To {
+    /** North*/ N,
+    /** East */ E,
+    /** South*/ S,
+    /** West */ W,
+}
+
 /// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn.
 /// South(screen bottom) direction is 0 degrees.
 /// Other elements is the coordinates of the path points x and y respectively.

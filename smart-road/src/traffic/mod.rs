@@ -9,7 +9,7 @@ mod stack;
 mod autos;
 mod calc;
 
-pub use car::{Car, To, Turn};
+pub use car::{Car, Direction, Turn};
 
 pub use state::TrafficState;
 

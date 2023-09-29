@@ -1,12 +1,12 @@
 use crate::config::{CAR_PADDING, STRAIGHT_LENGTH, WINDOW_SIZE};
 use crate::traffic::curve::quadratic_curve;
-use crate::traffic::{To, Turn};
+use crate::traffic::{Direction, Turn};
 use macroquad::math::Vec2;
 use std::ops::{Mul, Sub};
 
 #[derive(Debug)]
 pub struct Path {
-    pub to: To,
+    pub to: Direction,
     pub turn: Turn,
 
     points: Vec<Vec2>,
@@ -40,32 +40,32 @@ pub struct Path {
 
 //todo need refactor, because x3 roads now
 /// Returns the point on the border where the car should appear or disappear
-fn border_point(to: To, right_side: bool) -> Vec2 {
+fn border_point(to: Direction, right_side: bool) -> Vec2 {
     let car_padding = if right_side {
         CAR_PADDING
     } else {
         -CAR_PADDING
     };
     match to {
-        To::N => Vec2::new(WINDOW_SIZE as f32 / 2.0 - car_padding, 0.0),
-        To::E => Vec2::new(WINDOW_SIZE as f32, WINDOW_SIZE as f32 / 2.0 - car_padding),
-        To::S => Vec2::new(WINDOW_SIZE as f32 / 2.0 + car_padding, WINDOW_SIZE as f32),
-        To::W => Vec2::new(0.0, WINDOW_SIZE as f32 / 2.0 + car_padding),
+        Direction::N => Vec2::new(WINDOW_SIZE as f32 / 2.0 - car_padding, 0.0),
+        Direction::E => Vec2::new(WINDOW_SIZE as f32, WINDOW_SIZE as f32 / 2.0 - car_padding),
+        Direction::S => Vec2::new(WINDOW_SIZE as f32 / 2.0 + car_padding, WINDOW_SIZE as f32),
+        Direction::W => Vec2::new(0.0, WINDOW_SIZE as f32 / 2.0 + car_padding),
     }
 }
 
 /// Returns the point in center associated with the border point
-fn straight_point(direction: To, border_point: Vec2) -> Vec2 {
+fn straight_point(direction: Direction, border_point: Vec2) -> Vec2 {
     match direction {
-        To::N => Vec2::new(border_point.x, border_point.y + STRAIGHT_LENGTH),
-        To::E => Vec2::new(border_point.x - STRAIGHT_LENGTH, border_point.y),
-        To::S => Vec2::new(border_point.x, border_point.y - STRAIGHT_LENGTH),
-        To::W => Vec2::new(border_point.x + STRAIGHT_LENGTH, border_point.y),
+        Direction::N => Vec2::new(border_point.x, border_point.y + STRAIGHT_LENGTH),
+        Direction::E => Vec2::new(border_point.x - STRAIGHT_LENGTH, border_point.y),
+        Direction::S => Vec2::new(border_point.x, border_point.y - STRAIGHT_LENGTH),
+        Direction::W => Vec2::new(border_point.x + STRAIGHT_LENGTH, border_point.y),
     }
 }
 
 impl Path {
-    pub fn new(going_to: To, turn: Turn) -> Self {
+    pub fn new(going_to: Direction, turn: Turn) -> Self {
         let destination = going_to.destination(turn);
 
         let start_point = border_point(going_to, true);

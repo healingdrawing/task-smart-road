@@ -1,5 +1,5 @@
 use crate::config::{CAR_LENGTH, CAR_SAFE_DISTANCE};
-use crate::traffic::{Car, To, Turn, Path};
+use crate::traffic::{Car, Direction, Turn, Path};
 
 #[derive(Debug, Eq, PartialEq)]
 pub enum Light {
@@ -9,7 +9,7 @@ pub enum Light {
 
 #[derive(Debug)]
 pub struct Line {
-    pub coming_from: To,
+    pub coming_from: Direction,
 
     pub cars: Vec<Car>,
     pub light: Light,
@@ -26,7 +26,7 @@ fn get_path(paths: &[Path; 3], going: Turn) -> &Path {
 }
 
 impl Line {
-    pub fn new(coming_from: To, light: Light) -> Self {
+    pub fn new(coming_from: Direction, light: Light) -> Self {
         Line {
             coming_from,
             light,
