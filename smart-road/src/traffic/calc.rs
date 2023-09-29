@@ -22,6 +22,14 @@ impl<'a> Calc<'a> {
     println!("update");
   }
 
+  /** input handler call this method, to try add auto from south to north */
+  pub fn try_add_auto_north(&mut self) {
+    // self.autos.add_auto_north();
+    println!("add_auto_north calc.rs");
+  }
+
+  
+
   /** input handler call this method */
   pub fn try_add_auto_random(&mut self) {
     // self.autos.add_auto_random();
