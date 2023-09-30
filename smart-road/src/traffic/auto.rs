@@ -3,7 +3,7 @@ use macroquad::prelude::*;
 use crate::config::PXS;
 use std::time::Instant;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Auto{
   pub texture:Texture2D, // texture of the car
   pub texture_angle:f32, // angle of texture rotation

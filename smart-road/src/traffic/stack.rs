@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct LimitedStack<T> {
   items: VecDeque<T>,
   capacity: usize,
