@@ -1,3 +1,4 @@
+use macroquad::texture::Texture2D;
 use rand::Rng;
 
 use crate::draw::Textures;
@@ -27,6 +28,24 @@ impl<'a> Calc<'a> {
     // println!("update");
   }
   
+  //todo extend to random texture
+  /** random auto texture */
+  fn at(&self) -> &Texture2D { &self.textures.auto }
+
+  /** texture angle for initial auto position */
+  fn ta(&self, road:To) -> f32 {
+    match road {
+      To::N => self.way.nn[0][0] as f32,
+      To::S => self.way.ss[0][0] as f32,
+      To::W => self.way.ww[0][0] as f32,
+      _ => self.way.ee[0][0] as f32,
+    }
+  }
+
+  fn add_auto(&self) -> Auto {
+    Auto::new(100f32,100f32,270f32,&self.textures.auto)
+  }
+
   fn auto_targeted_to_point_does_not_move(&self, point:&[u16; 2], lane_autos:&LimitedStack<Auto>) -> bool {
     lane_autos.iter().any(|auto| auto.to_x == point[0] as f32 && auto.to_y == point[1] as f32 && auto.moving == false)
   }
@@ -190,7 +209,7 @@ impl<'a> Calc<'a> {
     println!("try_add_auto_north_directed calc.rs");
     // generate random number from 0 to 2 to choose the lane
     match self.random_lane(To::N) {
-      0 => println!("lane 0"), //todo replace with add_auto_north_right
+      0 => {self.autos.ne.push(self.add_auto());},  //todo replace with add_auto_north_right
       1 => println!("lane 1"),
       2 => println!("lane 2"),
       _ => println!("lane error"),
