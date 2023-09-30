@@ -86,18 +86,18 @@ impl Way {
     //move forward
     ss: [[0,0], [4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]],
     nn: [[180,180], [7*CS,11*CS],[7*CS,10*CS],[7*CS,9*CS],[7*CS,0]],
-    ww: [[270,270], [11*CS, 4*CS],[10*CS, 4*CS],[9*CS, 4*CS],[0, 4*CS]],
-    ee: [[90,90], [0,7*CS],[1*CS,7*CS],[2*CS,7*CS],[11*CS,7*CS]],
+    ww: [[90,270], [11*CS, 4*CS],[10*CS, 4*CS],[9*CS, 4*CS],[0, 4*CS]],
+    ee: [[270,90], [0,7*CS],[1*CS,7*CS],[2*CS,7*CS],[11*CS,7*CS]],
     //turn left
     se: [[0,90], [5*CS,0],[5*CS,1*CS],[5*CS,2*CS],[5*CS,6*CS],[11*CS,6*CS]],
     nw: [[180,270], [6*CS,11*CS],[6*CS,10*CS],[6*CS,9*CS],[6*CS,5*CS],[0,5*CS]],
-    ws: [[270,0], [11*CS,5*CS],[10*CS,5*CS],[9*CS,5*CS],[5*CS,5*CS],[5*CS,11*CS]],
-    en: [[90,180], [0,6*CS],[1*CS,6*CS],[2*CS,6*CS],[6*CS,6*CS],[6*CS,0]],
+    ws: [[90,0], [11*CS,5*CS],[10*CS,5*CS],[9*CS,5*CS],[5*CS,5*CS],[5*CS,11*CS]],
+    en: [[270,180], [0,6*CS],[1*CS,6*CS],[2*CS,6*CS],[6*CS,6*CS],[6*CS,0]],
     //turn right
     sw: [[0,270], [3*CS,0],[3*CS,1*CS],[3*CS,2*CS],[3*CS,3*CS],[0,3*CS]],
     ne: [[180,90], [8*CS,11*CS],[8*CS,10*CS],[8*CS,9*CS],[8*CS,8*CS],[11*CS,8*CS]],
-    es: [[90,0], [0,8*CS],[1*CS,8*CS],[2*CS,8*CS],[3*CS,8*CS],[3*CS,11*CS]],
-    wn: [[270,180], [11*CS,3*CS],[10*CS,3*CS],[9*CS,3*CS],[8*CS,3*CS],[8*CS,0]],
+    es: [[270,0], [0,8*CS],[1*CS,8*CS],[2*CS,8*CS],[3*CS,8*CS],[3*CS,11*CS]],
+    wn: [[90,180], [11*CS,3*CS],[10*CS,3*CS],[9*CS,3*CS],[8*CS,3*CS],[8*CS,0]],
     // in the initial state first two ways are open for cars, let is say it is both side vertical ways
     free_ss: [[true,false],[true,true],[true,true],[true,true],[true,true]],
     free_nn: [[true,false],[true,true],[true,true],[true,true],[true,true]],
