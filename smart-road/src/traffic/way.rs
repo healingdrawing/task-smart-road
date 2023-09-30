@@ -85,7 +85,7 @@ impl Way {
   Way {
     //move forward
     ss: [[0,0], [4*CS,0],[4*CS,1*CS],[4*CS,2*CS],[4*CS,11*CS]],
-    nn: [[180,180], [7*CS,11],[7*CS,10*CS],[7*CS,9*CS],[7*CS,0]],
+    nn: [[180,180], [7*CS,11*CS],[7*CS,10*CS],[7*CS,9*CS],[7*CS,0]],
     ww: [[270,270], [11*CS, 4*CS],[10*CS, 4*CS],[9*CS, 4*CS],[0, 4*CS]],
     ee: [[90,90], [0,7*CS],[1*CS,7*CS],[2*CS,7*CS],[11*CS,7*CS]],
     //turn left
