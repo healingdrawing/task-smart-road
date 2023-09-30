@@ -45,7 +45,7 @@ impl<'a> Calc<'a> {
     autos_ne_clone.iter_mut().for_each(|auto| {
       if !auto.moving {
           let target = self.way.ne.iter().skip(1).position(|point| point[0] as f32 == auto.to_x && point[1] as f32 == auto.to_y).unwrap();
-          if target == self.way.ne.len() - 1 {
+          if target == self.way.ne.len() - 2 {// the hell, it is so muddy -2 because target calculated with skip(1). Perhaps it was not the best idea to use first index as angle of texture rotation
               // end of the way achieved
               pop_first = true;
           } else if self.next_way_point_is_free(
