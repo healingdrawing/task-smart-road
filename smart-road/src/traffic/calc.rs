@@ -24,7 +24,21 @@ impl<'a> Calc<'a> {
   }
 
   pub fn update(&mut self) {
+    self.autos.ne.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.nn.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.nw.iter_mut().for_each(|auto| auto.animate_step());
+    
+    self.autos.sw.iter_mut().for_each(|auto| auto.animate_step());
     self.autos.ss.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.se.iter_mut().for_each(|auto| auto.animate_step());
+
+    self.autos.wn.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.ww.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.ws.iter_mut().for_each(|auto| auto.animate_step());
+
+    self.autos.es.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.ee.iter_mut().for_each(|auto| auto.animate_step());
+    self.autos.en.iter_mut().for_each(|auto| auto.animate_step());
     // println!("update");
   }
   
@@ -218,12 +232,13 @@ impl<'a> Calc<'a> {
     let mut choices = vec![0, 1, 2];
 
     while !choices.is_empty() {
-        let index = rng.gen_range(0..choices.len());
-        let lane_number = choices.remove(index);
+      let index = rng.gen_range(0..choices.len());
+      let lane_number = choices.remove(index);
 
-        if self.lane_is_free(road, lane_number) {
-            return lane_number;
-        }
+      if self.lane_is_free(road, lane_number) {
+        println!("lane_number: {}", lane_number);
+        return lane_number;
+      }
     }
 
     // If all choices are taken, return the (3) as a fail value
@@ -234,7 +249,6 @@ impl<'a> Calc<'a> {
   pub fn try_add_auto_north_directed(&mut self) {
     // self.autos.add_auto_north();
     println!("try_add_auto_north_directed calc.rs");
-    // generate random number from 0 to 2 to choose the lane
     match self.random_lane(To::N) {
       0 => {self.autos.ne.push(self.add_auto(To::N, 0));},
       1 => {self.autos.nn.push(self.add_auto(To::N, 1));},
@@ -247,6 +261,12 @@ impl<'a> Calc<'a> {
   pub fn try_add_auto_south_directed(&mut self) {
     // self.autos.add_auto_south();
     println!("try_add_auto_south_directed calc.rs");
+    match self.random_lane(To::S) {
+      0 => {self.autos.sw.push(self.add_auto(To::S, 0));},
+      1 => {self.autos.ss.push(self.add_auto(To::S, 1));},
+      2 => {self.autos.se.push(self.add_auto(To::S, 2));},
+      _ => println!("lane error"),
+    }
   }
 
   /** input handler call this method, to try add auto from west to east */
