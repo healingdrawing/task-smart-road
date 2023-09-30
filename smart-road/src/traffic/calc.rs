@@ -190,7 +190,7 @@ impl<'a> Calc<'a> {
     println!("try_add_auto_north_directed calc.rs");
     // generate random number from 0 to 2 to choose the lane
     match self.random_lane(To::N) {
-      0 => println!("lane 0"),
+      0 => println!("lane 0"), //todo replace with add_auto_north_right
       1 => println!("lane 1"),
       2 => println!("lane 2"),
       _ => println!("lane error"),
