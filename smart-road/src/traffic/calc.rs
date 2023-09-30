@@ -30,10 +30,10 @@ impl<'a> Calc<'a> {
   
   //todo extend to random texture
   /** random auto texture */
-  fn at(&self) -> &Texture2D { &self.textures.auto }
+  fn a_tex(&self) -> &Texture2D { &self.textures.auto }
 
   /** texture angle for initial auto position */
-  fn ta(&self, road:To) -> f32 {
+  fn t_ang(&self, road:To) -> f32 {
     match road {
       To::N => self.way.nn[0][0] as f32,
       To::S => self.way.ss[0][0] as f32,
@@ -42,8 +42,35 @@ impl<'a> Calc<'a> {
     }
   }
 
-  fn add_auto(&self) -> Auto {
-    Auto::new(100f32,100f32,270f32,&self.textures.auto)
+  //todo very muddy. 
+  fn a_xy(&self, road: To, lane_number: u8) -> &[f32; 2] {
+    let result: Box<[f32; 2]> = match road {
+        To::N => match lane_number {
+            0 => Box::new([self.way.ne[1][0] as f32, self.way.ne[1][1] as f32]),
+            1 => Box::new([self.way.nn[1][0] as f32, self.way.nn[1][1] as f32]),
+            _ => Box::new([self.way.nw[1][0] as f32, self.way.nw[1][1] as f32]),
+        },
+        To::S => match lane_number {
+            0 => Box::new([self.way.sw[1][0] as f32, self.way.sw[1][1] as f32]),
+            1 => Box::new([self.way.ss[1][0] as f32, self.way.ss[1][1] as f32]),
+            _ => Box::new([self.way.se[1][0] as f32, self.way.se[1][1] as f32]),
+        },
+        To::W => match lane_number {
+            0 => Box::new([self.way.wn[1][0] as f32, self.way.wn[1][1] as f32]),
+            1 => Box::new([self.way.ww[1][0] as f32, self.way.ww[1][1] as f32]),
+            _ => Box::new([self.way.ws[1][0] as f32, self.way.ws[1][1] as f32]),
+        },
+        _ => match lane_number {
+            0 => Box::new([self.way.es[1][0] as f32, self.way.es[1][1] as f32]),
+            1 => Box::new([self.way.ee[1][0] as f32, self.way.ee[1][1] as f32]),
+            _ => Box::new([self.way.en[1][0] as f32, self.way.en[1][1] as f32]),
+        },
+    };
+    Box::leak(result)
+}
+
+  fn add_auto(&self, road:To, lane_number: u8) -> Auto {
+    Auto::new(self.a_xy(road, lane_number),self.t_ang(road),self.a_tex())
   }
 
   fn auto_targeted_to_point_does_not_move(&self, point:&[u16; 2], lane_autos:&LimitedStack<Auto>) -> bool {
@@ -209,9 +236,9 @@ impl<'a> Calc<'a> {
     println!("try_add_auto_north_directed calc.rs");
     // generate random number from 0 to 2 to choose the lane
     match self.random_lane(To::N) {
-      0 => {self.autos.ne.push(self.add_auto());},  //todo replace with add_auto_north_right
-      1 => println!("lane 1"),
-      2 => println!("lane 2"),
+      0 => {self.autos.ne.push(self.add_auto(To::N, 0));},
+      1 => {self.autos.nn.push(self.add_auto(To::N, 1));},
+      2 => {self.autos.nw.push(self.add_auto(To::N, 2));},
       _ => println!("lane error"),
     }
   }

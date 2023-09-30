@@ -24,7 +24,7 @@ pub struct Auto{
 }
 
 impl Auto{
-  pub fn new(x:f32, y:f32, texture_angle:f32, texture:&Texture2D)->Self{
+  pub fn new(xy:&[f32;2], texture_angle:f32, texture:&Texture2D)->Self{
     Self{
       texture:texture.clone(),
       texture_angle:texture_angle.to_radians(),
@@ -34,12 +34,12 @@ impl Auto{
       dist:0.0,
       sign_x:0.0,
       sign_y:0.0,
-      from_x:x,
-      from_y:y,
-      x,
-      y,
-      to_x:x,
-      to_y:y,
+      from_x:xy[0],
+      from_y:xy[1],
+      x:xy[0],
+      y:xy[1],
+      to_x:xy[0],
+      to_y:xy[1],
       turbo:0.0,
       moving:false,
     }
@@ -82,16 +82,16 @@ impl Auto{
     // Implement your drawing logic here
   }
 
-  pub fn animate_to(&mut self, to_x: f32, to_y: f32, turbo: f32) {
+  pub fn animate_to(&mut self, xy:&[f32;2], turbo: f32) {
     if !self.moving {
-      self.sum_dist = ((self.x - to_x).powi(2) + (self.y - to_y).powi(2)).sqrt();
+      self.sum_dist = ((self.x - xy[0]).powi(2) + (self.y - xy[1]).powi(2)).sqrt();
       self.dist = 0.0;
-      self.sign_x = if self.x < to_x { 1.0 } else if self.x > to_x { -1.0 } else { 0.0 };
-      self.sign_y = if self.y < to_y { 1.0 } else if self.y > to_y { -1.0 } else { 0.0 };
+      self.sign_x = if self.x < xy[0] { 1.0 } else if self.x > xy[0] { -1.0 } else { 0.0 };
+      self.sign_y = if self.y < xy[1] { 1.0 } else if self.y > xy[1] { -1.0 } else { 0.0 };
       self.from_x = self.x;
       self.from_y = self.y;
-      self.to_x = to_x;
-      self.to_y = to_y;
+      self.to_x = xy[0];
+      self.to_y = xy[1];
       self.start_time = std::time::Instant::now();
       self.turbo = turbo;
       self.moving = true;

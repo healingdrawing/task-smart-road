@@ -24,12 +24,12 @@ async fn main() {
     let mut calc = Calc::new(&textures);
 
     let mut autos = Autos::new();
-    autos.ss.push(Auto::new(100f32,100f32,270f32,&textures.auto));
-    autos.ss.push(Auto::new(196f32,100f32,0f32,&textures.auto));
+    autos.ss.push(Auto::new(&[100f32,100f32],270f32,&textures.auto));
+    autos.ss.push(Auto::new(&[196f32,100f32],0f32,&textures.auto));
     
     autos.ss.iter_mut().for_each(|auto|
-        if auto.x == 100f32 {auto.animate_to(196f32, 100f32, 1f32)}
-        else{auto.animate_to(196f32, 196f32, 1f32)}
+        if auto.x == 100f32 {auto.animate_to(&[196f32, 100f32], 1f32)}
+        else{auto.animate_to(&[196f32, 196f32], 1f32)}
     );
 
 
