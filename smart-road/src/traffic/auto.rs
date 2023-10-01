@@ -48,18 +48,18 @@ impl Auto{
   pub fn animate_step(&mut self) {
     if self.moving {
       let elapsed_secs = self.start_time.elapsed().as_secs_f32();
-      println!("elapsed_secs: {}", elapsed_secs); //todo hide
-      println!("x: {}, to_x: {}, y: {}, to_y: {}", self.x, self.to_x, self.y, self.to_y);//todo hide
+      // println!("elapsed_secs: {}", elapsed_secs); //todo hide
+      // println!("x: {}, to_x: {}, y: {}, to_y: {}", self.x, self.to_x, self.y, self.to_y);//todo hide
       // Calculate the Euclidean distance directly
       self.dist = ((self.x - self.from_x).powi(2) + (self.y - self.from_y).powi(2)).sqrt();
 
-      println!("dist: {}, sum_dist: {}", self.dist, self.sum_dist); //todo hide
+      // println!("dist: {}, sum_dist: {}", self.dist, self.sum_dist); //todo hide
       if self.dist < self.sum_dist {
         self.x = self.from_x + elapsed_secs * PXS * self.turbo * self.sign_x;
-        println!("x: {}", self.x); //todo hide
+        // println!("x: {}", self.x); //todo hide
         self.y = self.from_y + elapsed_secs * PXS * self.turbo * self.sign_y;
       } else {
-        println!("wtf"); //todo hide
+        // println!("wtf"); //todo hide
         self.x = self.to_x;
         self.y = self.to_y;
         self.moving = false;

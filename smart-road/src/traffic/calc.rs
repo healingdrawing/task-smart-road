@@ -32,6 +32,7 @@ impl<'a> Calc<'a> {
   fn next_way_point_is_free(&self, oldxy:&[u16;2], xy:&[u16;2], lane_autos:&LimitedStack<Auto>) -> bool {
     let free =
     lane_autos.iter().all(|auto| auto.to_x != xy[0].into() || auto.to_y != xy[1].into() );
+    // println!("free: {}", free);
     // println!("free: {}, oldxy {:#?}, xy {:#?} , autos {:#?}", free, oldxy, xy, lane_autos); //todo hide
     free
   }
@@ -138,7 +139,7 @@ impl<'a> Calc<'a> {
   }
 
   fn no_autos_targeted_to_point(&self, point:&[u16; 2], lane_autos:&LimitedStack<Auto>) -> bool {
-    lane_autos.iter().all(|auto| auto.to_x != point[0] as f32 && auto.to_y != point[1] as f32)
+    lane_autos.iter().all(|auto| auto.to_x != point[0] as f32 || auto.to_y != point[1] as f32)
   }
 
   fn no_autos_targeted_to_lane_first_point(
@@ -262,12 +263,22 @@ impl<'a> Calc<'a> {
     /*no autos targeted to lane first point and no targeted to second point OR
     no autos targeted to lane first point and there is auto targeted to second point, but this auto does not move, so this auto already in destination point (on second point), so no collision in add moment
      */
-    self.no_autos_targeted_to_lane_first_point(road_direction, lane_number, lane_autos)
-    && (
-      self.no_autos_targeted_to_lane_second_point(road_direction, lane_number, lane_autos)
-      ||
-      self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos)
-    ) //todo check it twice, does not look clear
+
+    let first_free = self.no_autos_targeted_to_lane_first_point(road_direction, lane_number, lane_autos);
+    let second_free = self.no_autos_targeted_to_lane_second_point(road_direction, lane_number, lane_autos);
+    let second_done = self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos);
+
+    if lane_number == 0 {
+      println!("===\nfirst_free: {}, second_free: {}, second_done: {}", first_free, second_free, second_done); //todo hide
+    }
+    first_free && (second_free || second_done)
+
+    // self.no_autos_targeted_to_lane_first_point(road_direction, lane_number, lane_autos)
+    // && (
+    //   self.no_autos_targeted_to_lane_second_point(road_direction, lane_number, lane_autos)
+    //   ||
+    //   self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos)
+    // ) //todo check it twice, does not look clear
   }
 
   
