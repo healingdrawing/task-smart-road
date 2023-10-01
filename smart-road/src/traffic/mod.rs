@@ -7,7 +7,7 @@ mod way;
 mod auto;
 mod stack;
 mod autos;
-mod calc;
+mod road;
 
 pub use car::{Car, Direction, Turn};
 
@@ -21,4 +21,4 @@ pub use autos::Autos;
 
 pub use auto::Auto;
 
-pub use calc::Calc;
+pub use road::Road;

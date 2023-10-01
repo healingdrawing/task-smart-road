@@ -13,7 +13,7 @@ use crate::draw::{/* draw_light, */ draw_path, draw_roads, Textures};
 use crate::traffic::TrafficState;
 use crate::traffic::Autos; //todo delete
 use crate::traffic::Auto; //todo delete
-use crate::traffic::Calc;
+use crate::traffic::Road;
 use draw::draw_car;
 
 #[macroquad::main(window_conf)]
@@ -21,7 +21,7 @@ async fn main() {
     let mut traffic_state = TrafficState::new();
     let textures = Textures::load().await;
 
-    let mut calc = Calc::new(&textures);
+    let mut road = Road::new(&textures);
 
     let mut autos = Autos::new();
     autos.ss.push(Auto::new(&[100f32,100f32],270f32,&textures.auto));
@@ -35,7 +35,7 @@ async fn main() {
 
 
   loop {
-    handle_input(&mut traffic_state, &mut calc);
+    handle_input(&mut traffic_state, &mut road);
 
     traffic_state.update();
 
@@ -44,7 +44,7 @@ async fn main() {
     draw_roads(&textures);
     autos.ss.iter_mut().for_each(|auto| auto.animate_step());
 
-    calc.update();
+    road.update();
     
     // old code
     for line in traffic_state.lines.iter() {

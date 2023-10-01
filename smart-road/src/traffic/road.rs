@@ -8,13 +8,13 @@ use crate::traffic::auto::Auto;
 
 use super::stack::LimitedStack;
 
-pub struct Calc<'a> {
+pub struct Road<'a> {
   pub way: Way,
   pub autos: Autos,
   pub textures: &'a Textures,
 }
 
-impl<'a> Calc<'a> {
+impl<'a> Road<'a> {
   pub fn new(textures: &'a Textures) -> Self {
     Self {
       way: Way::new(),

@@ -1,7 +1,7 @@
-use crate::traffic::{Direction, TrafficState, Calc};
+use crate::traffic::{Direction, TrafficState, Road};
 use macroquad::prelude::*;
 
-pub fn handle_input(traffic_state: &mut TrafficState, calc: &mut Calc) {
+pub fn handle_input(traffic_state: &mut TrafficState, calc: &mut Road) {
   if is_key_pressed(KeyCode::Escape) {
     std::process::exit(0);
     //todo implement first the statistic window appear, then exit after second press
