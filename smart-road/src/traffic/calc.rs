@@ -49,7 +49,13 @@ impl<'a> Calc<'a> {
           if target == self.way.ne.len() - 2 {// the hell, it is so muddy -2 because target calculated with skip(1). Perhaps it was not the best idea to use first index as angle of texture rotation
               // end of the way achieved
               pop_first = true;
-          } else if self.next_way_point_is_free(
+          } else if target == self.way.ne.len() - 3 { // it must be prelast way point
+            let auto_number = self.autos.ne.iter().position(|x| x.to_x == auto.to_x && x.to_y == auto.to_y).unwrap();
+              self.autos.ne.iter_mut().nth(auto_number).unwrap().animate_to(
+                &self.way.ne[target + 2].map(|x| x.into()),
+                 2.0,
+              );
+          }else if self.next_way_point_is_free(
               &self.way.ne[target+1],
               &self.way.ne[target + 2],
               &self.autos.ne,
@@ -59,9 +65,8 @@ impl<'a> Calc<'a> {
               self.autos.ne.iter_mut().nth(auto_number).unwrap().animate_to(
                 &self.way.ne[target + 2].map(|x| x.into()),
                  1.0,
-              );
-              
-          }
+              );  
+          } 
       }
     });
 
