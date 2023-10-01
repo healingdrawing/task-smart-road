@@ -7,7 +7,10 @@ mod way;
 mod auto;
 mod stack;
 mod autos;
-mod road;
+mod road_;
+mod road_animate;
+mod road_add_auto;
+mod road_random_free_lane;
 
 pub use car::{Car, Direction, Turn};
 
@@ -21,4 +24,4 @@ pub use autos::Autos;
 
 pub use auto::Auto;
 
-pub use road::Road;
+pub use road_::Road;

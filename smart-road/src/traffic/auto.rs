@@ -24,6 +24,11 @@ pub struct Auto{
 }
 
 impl Auto{
+  /** 
+   * xy is left upper corner of texture position on screen
+   * texture angle (degrees) in the initial moment when car added on screen.
+   Positive direction cw (microquad rule, looks like creator hates school math)
+   */
   pub fn new(xy:&[f32;2], texture_angle:f32, texture:&Texture2D)->Self{
     Self{
       texture:texture.clone(),
