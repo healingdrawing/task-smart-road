@@ -1,7 +1,7 @@
 use super::Road;
 
 impl<'a> Road<'a> {
-  /** manage north east (turn right) lane of north directed way of the road */
+  /** manage south west (turn right) lane of south directed way of the road */
   pub fn manage_sw(&mut self) {
     let mut pop_first: bool = false; // if some auto done the way,remove it from the stack
     let mut autos_clone = self.autos.sw.clone();

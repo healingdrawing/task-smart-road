@@ -14,6 +14,8 @@ mod road_random_free_lane;
 mod road_manage_;
 mod road_manage_ne;
 mod road_manage_sw;
+mod road_manage_wn;
+mod road_manage_es;
 
 pub use car::{Car, Direction, Turn};
 

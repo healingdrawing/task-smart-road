@@ -14,6 +14,8 @@ impl<'a> Road<'a> {
   pub fn manage_autos(&mut self) {
     self.manage_ne();
     self.manage_sw();
+    self.manage_wn();
+    self.manage_es();
   }
 
   
