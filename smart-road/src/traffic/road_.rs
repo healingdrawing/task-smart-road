@@ -2,9 +2,7 @@
 use crate::draw::Textures;
 use crate::traffic::way::Way;
 use crate::traffic::autos::Autos;
-use crate::traffic::auto::Auto;
 
-use super::stack::LimitedStack;
 
 pub struct Road<'a> {
   pub way: Way,
