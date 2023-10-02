@@ -11,6 +11,7 @@ mod road_;
 mod road_animate;
 mod road_add_auto;
 mod road_random_free_lane;
+mod road_manage_autos_;
 
 pub use car::{Car, Direction, Turn};
 
