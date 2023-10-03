@@ -4,9 +4,9 @@ impl<'a> Road<'a> {
   /** manage south west (turn right) lane of south directed way of the road */
   pub fn manage_sw(&mut self) {
     let mut pop_first: bool = false; // if some auto done the way,remove it from the stack
-    let mut autos_clone = self.autos.sw.clone();
+    let autos_clone = self.autos.sw.clone();
 
-    autos_clone.iter_mut().for_each(|auto| {
+    autos_clone.iter().for_each(|auto| {
       if !auto.moving {
         let target = self.way.sw.iter().skip(1).position(|point| point[0] as f32 == auto.to_x && point[1] as f32 == auto.to_y).unwrap();
         if target == self.way.sw.len() - 2 {// the hell, it is so muddy -2 because target calculated with skip(1). Perhaps it was not the best idea to use first index as angle of texture rotation

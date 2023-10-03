@@ -16,6 +16,9 @@ mod road_manage_ne;
 mod road_manage_sw;
 mod road_manage_wn;
 mod road_manage_es;
+mod road_manage_turn_right;
+mod road_manage_no_turn;
+mod road_manage_turn_left;
 
 pub use car::{Car, Direction, Turn};
 
