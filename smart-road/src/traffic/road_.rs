@@ -3,12 +3,18 @@ use crate::draw::Textures;
 use crate::traffic::way::Way;
 use crate::traffic::autos::Autos;
 
+#[derive(Debug, Eq, PartialEq, Clone, Copy)]
+pub enum Free{
+  /** vertical */ V,
+  /** horizontal */ H,
+}
 
 pub struct Road<'a> {
   pub way: Way,
   pub autos: Autos,
   pub textures: &'a Textures,
   pub spam: bool,
+  pub free: Free,
 }
 
 impl<'a> Road<'a> {
@@ -18,6 +24,7 @@ impl<'a> Road<'a> {
       autos: Autos::new(),
       textures,
       spam: false,
+      free: Free::V,
     }
   }
 
@@ -32,6 +39,11 @@ impl<'a> Road<'a> {
     // println!("update"); //todo hide
   }
 
-
+  pub fn switch_free(&mut self) {
+    match self.free {
+      Free::V => self.free = Free::H,
+      Free::H => self.free = Free::V,
+    }
+  }
 
 }
