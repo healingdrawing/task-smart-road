@@ -18,7 +18,7 @@ impl<'a> Road<'a> {
               &self.way.ne[target + 2].map(|x| x.into()),
               2.0,
             );
-        } else if self.next_way_point_is_free(
+        } else if self.way_point_is_free(
           &self.way.ne[target+1],
           &self.way.ne[target + 2],
           &self.autos.ne,
