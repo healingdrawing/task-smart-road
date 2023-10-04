@@ -22,6 +22,11 @@ pub struct Road<'a> {
   pub se_free: bool,
   pub ws_free: bool,
   pub en_free: bool,
+  /*no turn section to allow one car per turn */
+  pub nn_free: bool,
+  pub ss_free: bool,
+  pub ww_free: bool,
+  pub ee_free: bool,
 
 }
 
@@ -37,6 +42,10 @@ impl<'a> Road<'a> {
       se_free: true,
       ws_free: false,
       en_free: false,
+      nn_free: true,
+      ss_free: true,
+      ww_free: false,
+      ee_free: false,
     }
   }
 
@@ -57,6 +66,10 @@ impl<'a> Road<'a> {
     self.se_free = true;
     self.ws_free = false;
     self.en_free = false;
+    self.nn_free = true;
+    self.ss_free = true;
+    self.ww_free = false;
+    self.ee_free = false;
   }
 
   fn switch_to_horizontal(&mut self) {
@@ -65,6 +78,10 @@ impl<'a> Road<'a> {
     self.se_free = false;
     self.ws_free = true;
     self.en_free = true;
+    self.nn_free = false;
+    self.ss_free = false;
+    self.ww_free = true;
+    self.ee_free = true;
   }
 
   pub fn switch_free(&mut self) {
