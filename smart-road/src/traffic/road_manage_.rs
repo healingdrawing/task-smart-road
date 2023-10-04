@@ -40,15 +40,15 @@ impl<'a> Road<'a> {
       self.switch_free();
     }
 
-    // self.manage_turn_right(To::N);
-    // self.manage_turn_right(To::S);
-    // self.manage_turn_right(To::W);
-    // self.manage_turn_right(To::E);
+    self.manage_turn_right(To::N);
+    self.manage_turn_right(To::S);
+    self.manage_turn_right(To::W);
+    self.manage_turn_right(To::E);
     
-    // self.manage_no_turn(To::N);
-    // self.manage_no_turn(To::S);
-    // self.manage_no_turn(To::W);
-    // self.manage_no_turn(To::E);
+    self.manage_no_turn(To::N);
+    self.manage_no_turn(To::S);
+    self.manage_no_turn(To::W);
+    self.manage_no_turn(To::E);
 
     self.manage_turn_left(To::N);
     self.manage_turn_left(To::S);

@@ -1,5 +1,5 @@
 // rust is awful
-use super::{Road,way::To};
+use super::{Road,way::To, road_::Free};
 
 impl<'a> Road<'a> {
   pub fn manage_no_turn(&mut self, to: To) {
@@ -32,7 +32,7 @@ impl<'a> Road<'a> {
         if target == way_len - 2 {// the hell, it is so muddy -2 because target calculated with skip(1). Perhaps it was not the best idea to use first index as angle of texture rotation
           // end of the way achieved
           pop_first = true;
-        } else if target == way_len - 3 { // it must be index of prelast way point, so turbo x2 the auto speed to keep distance between autos. In same time we demonstrate the third auto speed (0, normal, x2)
+        } else if target == way_len - 3 { // it must be index of prelast way point, so turbo x2 the auto speed, to keep distance between autos. In same time we demonstrate the third auto speed (0, normal, x2)
           let auto_number = autos_clone.iter().position(|x| x.to_x == auto.to_x && x.to_y == auto.to_y).unwrap();
 
           let mut autos_iter = match to {
@@ -42,10 +42,36 @@ impl<'a> Road<'a> {
             To::E => self.autos.ee.iter_mut(),
           };
 
-          autos_iter.nth(auto_number).unwrap().animate_to(
-            &way[target + 2].map(|x| x.into()),
-            2.0,
-          );
+          let one_auto_allowed = match to {
+            To::N => self.nn_free,
+            To::S => self.ss_free,
+            To::W => self.ww_free,
+            To::E => self.ee_free,
+          };
+          
+          if (one_auto_allowed) &&
+            (
+            ((to == To::N || to == To::S) && self.free == Free::VERTICAL)
+            || ((to == To::W || to == To::E) && self.free == Free::HORIZONTAL)
+            )
+          {
+            match to {
+              To::N => self.nn_free = false,
+              To::S => self.ss_free = false,
+              To::W => self.ww_free = false,
+              To::E => self.ee_free = false,
+            }
+            
+            autos_iter.nth(auto_number).unwrap().animate_to(
+              &way[target + 2].map(|x| x.into()),
+              2.0,
+            );  
+          }
+
+          // autos_iter.nth(auto_number).unwrap().animate_to(
+          //   &way[target + 2].map(|x| x.into()),
+          //   2.0,
+          // );
         } else if self.way_point_is_free(
           &way[target+1],
           &way[target + 2],
