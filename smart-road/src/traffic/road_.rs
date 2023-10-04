@@ -72,7 +72,7 @@ impl<'a> Road<'a> {
   }
 
   fn switch_to_vertical(&mut self) {
-    println!("switch_to_vertical"); //todo hide
+    // println!("switch_to_vertical"); //todo hide
     self.nw_free = true;
     self.se_free = true;
     self.ws_free = false;
@@ -84,7 +84,7 @@ impl<'a> Road<'a> {
   }
 
   fn switch_to_horizontal(&mut self) {
-    println!("switch_to_horizontal"); //todo hide
+    // println!("switch_to_horizontal"); //todo hide
     self.nw_free = false;
     self.se_free = false;
     self.ws_free = true;
