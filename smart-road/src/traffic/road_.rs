@@ -60,6 +60,17 @@ impl<'a> Road<'a> {
     // println!("update"); //todo hide
   }
 
+  pub fn reset_free(&mut self) {
+    self.nw_free = false;
+    self.se_free = false;
+    self.ws_free = false;
+    self.en_free = false;
+    self.nn_free = false;
+    self.ss_free = false;
+    self.ww_free = false;
+    self.ee_free = false;
+  }
+
   fn switch_to_vertical(&mut self) {
     println!("switch_to_vertical"); //todo hide
     self.nw_free = true;
