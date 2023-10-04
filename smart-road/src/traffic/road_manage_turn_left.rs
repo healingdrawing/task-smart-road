@@ -73,12 +73,40 @@ impl<'a> Road<'a> {
               1.0,
             );  
           } else { // point controlled by road control
-            if 
+            let one_auto_allowed = match to {
+              To::N => self.nw_free,
+              To::S => self.se_free,
+              To::W => self.ws_free,
+              To::E => self.en_free,
+            };
+            println!("===´\none_auto_allowed {:?} to {:?}", one_auto_allowed, to); //todo hide
+            if (one_auto_allowed) &&
+              (
               ((to == To::N || to == To::S) && self.free == Free::VERTICAL)
               || ((to == To::W || to == To::E) && self.free == Free::HORIZONTAL)
-              
+              )
             {
-              println!("free: {:?}, to: {:?}", self.free, to); //todo hide
+              let aa_free = match to {
+                To::N => self.nw_free,
+                To::S => self.se_free,
+                To::W => self.ws_free,
+                To::E => self.en_free,
+              };
+              println!("before false aa_free {:?} to {:?}", aa_free, to); //todo hide
+              match to {
+                To::N => self.nw_free = false,
+                To::S => self.se_free = false,
+                To::W => self.ws_free = false,
+                To::E => self.en_free = false,
+              }
+              let xx_free = match to {
+                To::N => self.nw_free,
+                To::S => self.se_free,
+                To::W => self.ws_free,
+                To::E => self.en_free,
+              };
+
+              println!("free: {:?}, to: {:?} xx_free {:?}", self.free, to, xx_free); //todo hide
               autos_iter.nth(auto_number).unwrap().animate_to(
                 &way[target + 2].map(|x| x.into()),
                 1.0,
