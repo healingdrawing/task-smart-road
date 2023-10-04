@@ -22,14 +22,14 @@ impl<'a> Road<'a> {
       self.way.se[self.way.se.len()-2],
       self.way.ws[self.way.ws.len()-2],
       self.way.en[self.way.en.len()-2],
-      // self.way.nn[self.way.nn.len()-1],
-      // self.way.ss[self.way.ss.len()-1],
-      // self.way.ww[self.way.ww.len()-1],
-      // self.way.ee[self.way.ee.len()-1],
+      self.way.nn[self.way.nn.len()-1],
+      self.way.ss[self.way.ss.len()-1],
+      self.way.ww[self.way.ww.len()-1],
+      self.way.ee[self.way.ee.len()-1],
     ];
     let autos = [
       &self.autos.nw, &self.autos.se, &self.autos.ws, &self.autos.en,
-      // &self.autos.nn, &self.autos.ss, &self.autos.ww, &self.autos.ee,
+      &self.autos.nn, &self.autos.ss, &self.autos.ww, &self.autos.ee,
     ];
     for (way_prelast_point, autos) in ways_prelast_points.iter().zip(autos.iter()) {
       if !self.way_point_is_free( &[0,0], way_prelast_point, autos) {

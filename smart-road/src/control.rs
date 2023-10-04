@@ -8,31 +8,31 @@ pub fn handle_input(traffic_state: &mut TrafficState, road: &mut Road) {
   }
 
   if is_key_pressed(KeyCode::Up) {
-    traffic_state.add_car(Direction::S);
+    // traffic_state.add_car(Direction::S);
     road.try_add_auto_north_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Down) {
-    traffic_state.add_car(Direction::N);
+    // traffic_state.add_car(Direction::N);
     road.try_add_auto_south_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Right) {
-    traffic_state.add_car(Direction::W);
+    // traffic_state.add_car(Direction::W);
     road.try_add_auto_east_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Left) {
-    traffic_state.add_car(Direction::E);
+    // traffic_state.add_car(Direction::E);
     road.try_add_auto_west_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::R) {
-    traffic_state.add_car_random();
+    // traffic_state.add_car_random();
     road.try_add_auto_random_directed();
     road.no_spam();
   }
