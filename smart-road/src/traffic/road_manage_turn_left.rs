@@ -1,5 +1,5 @@
 // rust is awful
-use super::{Road,way::To};
+use super::{Road,way::To, road_::Free};
 
 impl<'a> Road<'a> {
   pub fn manage_turn_left(&mut self, to: To) {
@@ -66,10 +66,25 @@ impl<'a> Road<'a> {
             To::E => self.autos.en.iter_mut(),
           };
 
-          autos_iter.nth(auto_number).unwrap().animate_to(
-            &way[target + 2].map(|x| x.into()),
-            1.0,
-          );  
+          if target != 2{ 
+            // common case, not a point with index 3 minus first item with angle
+            autos_iter.nth(auto_number).unwrap().animate_to(
+              &way[target + 2].map(|x| x.into()),
+              1.0,
+            );  
+          } else { // point controlled by road control
+            if 
+              ((to == To::N || to == To::S) && self.free == Free::VERTICAL)
+              || ((to == To::W || to == To::E) && self.free == Free::HORIZONTAL)
+              
+            {
+              println!("free: {:?}, to: {:?}", self.free, to); //todo hide
+              autos_iter.nth(auto_number).unwrap().animate_to(
+                &way[target + 2].map(|x| x.into()),
+                1.0,
+              );  
+            }
+          }
         } 
       }
     });

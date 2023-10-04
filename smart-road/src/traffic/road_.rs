@@ -6,9 +6,9 @@ use crate::traffic::autos::Autos;
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Free{
   /** vertical */ VERTICAL,
-  /** locked after vertical step */ LOCK_AFTER_VERTICAL,
+  /** locked after vertical */ AFTER_VERTICAL,
   /** horizontal */ HORIZONTAL,
-  /** locked after horizontal step */ LOCK_AFTER_HORIZONTAL,
+  /** locked after horizontal */ AFTER_HORIZONTAL,
 }
 
 pub struct Road<'a> {
@@ -43,10 +43,10 @@ impl<'a> Road<'a> {
 
   pub fn switch_free(&mut self) {
     match self.free {
-      Free::VERTICAL => self.free = Free::LOCK_AFTER_VERTICAL,
-      Free::LOCK_AFTER_VERTICAL => self.free = Free::HORIZONTAL,
-      Free::HORIZONTAL => self.free = Free::LOCK_AFTER_HORIZONTAL,
-      Free::LOCK_AFTER_HORIZONTAL => self.free = Free::VERTICAL,
+      Free::VERTICAL => self.free = Free::AFTER_VERTICAL,
+      Free::AFTER_VERTICAL => self.free = Free::HORIZONTAL,
+      Free::HORIZONTAL => self.free = Free::AFTER_HORIZONTAL,
+      Free::AFTER_HORIZONTAL => self.free = Free::VERTICAL,
     }
   }
 

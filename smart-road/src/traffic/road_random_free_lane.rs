@@ -139,7 +139,7 @@ impl<'a> Road<'a> {
     let second_done = self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos);
 
     if lane_number == 0 {
-      println!("===\nfirst_free: {}, second_free: {}, second_done: {}", first_free, second_free, second_done); //todo hide
+      // println!("===\nfirst_free: {}, second_free: {}, second_done: {}", first_free, second_free, second_done); //todo hide
     }
     first_free && (second_free || second_done)
 
@@ -170,7 +170,7 @@ impl<'a> Road<'a> {
       let lane_number = choices.remove(index);
 
       if self.lane_is_free(road, lane_number) {
-        println!("road: {:?} lane_number: {}", road, lane_number); //todo hide
+        // println!("road: {:?} lane_number: {}", road, lane_number); //todo hide
         return lane_number;
       }
     }

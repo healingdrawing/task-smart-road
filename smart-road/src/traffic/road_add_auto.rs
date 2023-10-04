@@ -55,51 +55,51 @@ impl<'a> Road<'a> {
 
   /** input handler call this method, to try add auto from south to north */
   pub fn try_add_auto_north_directed(&mut self) {
-    println!("try_add_auto_north_directed calc.rs"); //todo hide
+    // println!("try_add_auto_north_directed calc.rs"); //todo hide
     match self.random_free_lane(To::N) {
       0 => {self.autos.ne.push(self.add_auto(To::N, 0));},
       1 => {self.autos.nn.push(self.add_auto(To::N, 1));},
       2 => {self.autos.nw.push(self.add_auto(To::N, 2));},
-      _ => println!("lane error"), //keep it, it should not happen
+      _ => {}// println!("lane error"), //keep it, it should not happen
     }
   }
 
   /** input handler call this method, to try add auto from north to south */
   pub fn try_add_auto_south_directed(&mut self) {
-    println!("try_add_auto_south_directed calc.rs"); //todo hide
+    // println!("try_add_auto_south_directed calc.rs"); //todo hide
     match self.random_free_lane(To::S) {
       0 => {self.autos.sw.push(self.add_auto(To::S, 0));},
       1 => {self.autos.ss.push(self.add_auto(To::S, 1));},
       2 => {self.autos.se.push(self.add_auto(To::S, 2));},
-      _ => println!("lane error"), //keep it, it should not happen
+      _ => {}//println!("lane error"), //keep it, it should not happen
     }
   }
 
   /** input handler call this method, to try add auto from east to west */
   pub fn try_add_auto_west_directed(&mut self) {
-    println!("try_add_auto_west_directed calc.rs"); //todo hide
+    // println!("try_add_auto_west_directed calc.rs"); //todo hide
     match self.random_free_lane(To::W) {
       0 => {self.autos.wn.push(self.add_auto(To::W, 0));},
       1 => {self.autos.ww.push(self.add_auto(To::W, 1));},
       2 => {self.autos.ws.push(self.add_auto(To::W, 2));},
-      _ => println!("lane error"), //keep it, it should not happen
+      _ => {}//println!("lane error"), //keep it, it should not happen
     }
   }
 
   /** input handler call this method, to try add auto from west to east */
   pub fn try_add_auto_east_directed(&mut self) {
-    println!("try_add_auto_east_directed calc.rs"); //todo hide
+    // println!("try_add_auto_east_directed calc.rs"); //todo hide
     match self.random_free_lane(To::E) {
       0 => {self.autos.es.push(self.add_auto(To::E, 0));},
       1 => {self.autos.ee.push(self.add_auto(To::E, 1));},
       2 => {self.autos.en.push(self.add_auto(To::E, 2));},
-      _ => println!("lane error"), //keep it, it should not happen
+      _ => {}//println!("lane error"), //keep it, it should not happen
     }
   }
 
   /** input handler call this method */
   pub fn try_add_auto_random_directed(&mut self) {
-    println!("try_add_auto_random_directed calc.rs"); //todo hide
+    // println!("try_add_auto_random_directed calc.rs"); //todo hide
     match rand::thread_rng().gen_range(0..4) {
       0 => {self.try_add_auto_north_directed();},
       1 => {self.try_add_auto_south_directed();},

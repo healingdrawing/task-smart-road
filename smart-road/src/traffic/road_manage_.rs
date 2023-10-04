@@ -35,40 +35,20 @@ impl<'a> Road<'a> {
 
   /** calculate the behavior of autos to allow them properly move through cross road */
   pub fn manage_autos(&mut self) {
-    // let road_free = self.road_free();
-
-    // if road_free {
-    //   if self.free == Free::VERTICAL {
-    //     self.manage_turn_left(To::N);
-    //     self.manage_turn_left(To::S);
-    //     self.manage_no_turn(To::N);
-    //     self.manage_no_turn(To::S);
-    //     self.switch_free();
-    //   }
-    //   else if self.free == Free::HORIZONTAL {
-    //     self.manage_turn_left(To::W);
-    //     self.manage_turn_left(To::E);
-    //     self.manage_no_turn(To::W);
-    //     self.manage_no_turn(To::E);
-    //     self.switch_free();
-    //   }
-    //   else if self.free == Free::LOCK_AFTER_VERTICAL {
-    //     self.switch_free();
-    //   }
-    //   else if self.free == Free::LOCK_AFTER_HORIZONTAL {
-    //     self.switch_free();
-    //   }
-    // }
-
-    self.manage_turn_right(To::N);
-    self.manage_turn_right(To::S);
-    self.manage_turn_right(To::W);
-    self.manage_turn_right(To::E);
     
-    self.manage_no_turn(To::N);
-    self.manage_no_turn(To::S);
-    self.manage_no_turn(To::W);
-    self.manage_no_turn(To::E);
+    if self.road_free() {
+      self.switch_free();
+    }
+
+    // self.manage_turn_right(To::N);
+    // self.manage_turn_right(To::S);
+    // self.manage_turn_right(To::W);
+    // self.manage_turn_right(To::E);
+    
+    // self.manage_no_turn(To::N);
+    // self.manage_no_turn(To::S);
+    // self.manage_no_turn(To::W);
+    // self.manage_no_turn(To::E);
 
     self.manage_turn_left(To::N);
     self.manage_turn_left(To::S);
