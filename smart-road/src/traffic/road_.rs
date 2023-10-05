@@ -1,7 +1,10 @@
 
+use std::time::Instant;
+
 use crate::draw::Textures;
 use crate::traffic::way::Way;
 use crate::traffic::autos::Autos;
+use crate::traffic::auto::Auto;
 
 #[derive(Debug, Eq, PartialEq, Clone, Copy)]
 pub enum Free{
@@ -27,7 +30,22 @@ pub struct Road<'a> {
   pub ss_free: bool,
   pub ww_free: bool,
   pub ee_free: bool,
-
+  /*statistic section */
+  /** how many autos passed the crossroad */
+  pub autos_passed: u128,
+  /** max speed achieved by auto on the full way */
+  pub max_speed: f32,
+  /** min speed achieved by auto on the full way */
+  pub min_speed: f32,
+  /** max time seconds of auto on the full way */
+  pub max_time: f32,
+  /** min time seconds of auto on the full way */
+  pub min_time: f32,
+  /** close calls, when autos pass each other with violation of safe distance.
+   * Again bullshit from 01-edu. In example they demonstrated in task description
+   * one car hit another, but finally they show 0 close calls in statistics.
+   */
+  pub close_calls: u128,
 }
 
 impl<'a> Road<'a> {
@@ -46,6 +64,12 @@ impl<'a> Road<'a> {
       ss_free: true,
       ww_free: false,
       ee_free: false,
+      autos_passed: 0,
+      max_speed: f32::MIN,
+      min_speed: f32::MAX,
+      max_time: f32::MIN,
+      min_time: f32::MAX,
+      close_calls: 0,
     }
   }
 
@@ -58,6 +82,30 @@ impl<'a> Road<'a> {
     self.manage_autos();
     self.animate_step();
     // println!("update"); //todo hide
+  }
+
+  /** update_stats update statistics according to task requirements */
+  pub fn update_stats(&mut self, auto: Auto, sum_way: u16) {
+    self.autos_passed += 1;
+    let time = Instant::now().duration_since(auto.init_time).as_secs_f32();
+    self.max_time = self.max_time.max(time);
+    self.min_time = self.min_time.min(time);
+    let speed = sum_way as f32 / time;
+    self.max_speed = self.max_speed.max(speed);
+    self.min_speed = self.min_speed.min(speed);
+  }
+
+  pub fn format_stats(&self) -> String {
+    format!(
+      "Autos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}",
+      self.autos_passed,
+      self.max_speed,
+      self.min_speed,
+      self.max_time,
+      self.min_time,
+      self.close_calls, //idiots from 01-edu in task require close calls number, but in audit they also require collisions number
+      self.close_calls,
+    )
   }
 
   pub fn reset_free(&mut self) {

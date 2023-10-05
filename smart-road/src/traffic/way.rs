@@ -45,26 +45,6 @@ pub enum To {
   pub es: [[u16;2]; 6],
   pub wn: [[u16;2]; 6],
   
-  /* now declare the arrays which represent the every point of each way,
-  to check is it free, for car moving.
-  The iteration must be from the last point to the first point of the way,
-  to free the way from previous car position,
-  for check the next car able to move
-  */
-  pub free_ss: [[bool;2]; 5],
-  pub free_nn: [[bool;2]; 5],
-  pub free_ww: [[bool;2]; 5],
-  pub free_ee: [[bool;2]; 5],
-
-  pub free_se: [[bool;2]; 6],
-  pub free_nw: [[bool;2]; 6],
-  pub free_ws: [[bool;2]; 6],
-  pub free_en: [[bool;2]; 6],
-
-  pub free_sw: [[bool;2]; 6],
-  pub free_ne: [[bool;2]; 6],
-  pub free_es: [[bool;2]; 6],
-  pub free_wn: [[bool;2]; 6],
   // full distances for each way in meters(based on converted pixels)
   pub sum_ss: u16,
   pub sum_nn: u16,
@@ -98,21 +78,6 @@ impl Way {
     ne: [[180,90], [8*CS,11*CS],[8*CS,10*CS],[8*CS,9*CS],[8*CS,8*CS],[11*CS,8*CS]],
     es: [[270,0], [0,8*CS],[1*CS,8*CS],[2*CS,8*CS],[3*CS,8*CS],[3*CS,11*CS]],
     wn: [[90,180], [11*CS,3*CS],[10*CS,3*CS],[9*CS,3*CS],[8*CS,3*CS],[8*CS,0]],
-    // in the initial state first two ways are open for cars, let is say it is both side vertical ways
-    free_ss: [[true,false],[true,true],[true,true],[true,true],[true,true]],
-    free_nn: [[true,false],[true,true],[true,true],[true,true],[true,true]],
-    free_ww: [[false,false],[true,true],[true,true],[true,true],[true,true]],
-    free_ee: [[false,false],[true,true],[true,true],[true,true],[true,true]],
-    // in the initial state first two ways are open for cars, let is say it is both side vertical + turn left
-    free_se: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_nw: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_ws: [[false,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_en: [[false,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    // always open for cars, but still controllable using queue, because turn right is always open for cars
-    free_sw: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_ne: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_es: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
-    free_wn: [[true,false],[true,true],[true,true],[true,true],[true,true],[true,true]],
     // full distances for each way in meters(based on converted pixels)
     // forward ways
     sum_ss: 11*CM,

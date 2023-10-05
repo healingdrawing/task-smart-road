@@ -74,11 +74,22 @@ impl<'a> Road<'a> {
     });
 
     if pop_first {
-      
-      if to == To::N { self.autos.ne.pop();}
-      else if to == To::S { self.autos.sw.pop();}
-      else if to == To::W { self.autos.wn.pop();}
-      else if to == To::E { self.autos.es.pop();}
+
+      let auto_passed_crossroad = match to {
+        To::N => self.autos.ne.pop(),
+        To::S => self.autos.sw.pop(),
+        To::W => self.autos.wn.pop(),
+        To::E => self.autos.es.pop(),
+      }.unwrap();
+
+      let sum_way = match to {
+        To::N => self.way.sum_ne,
+        To::S => self.way.sum_sw,
+        To::W => self.way.sum_wn,
+        To::E => self.way.sum_es,
+      };
+
+      self.update_stats(auto_passed_crossroad, sum_way);
       
     }
   }

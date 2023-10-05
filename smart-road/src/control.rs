@@ -3,6 +3,7 @@ use macroquad::prelude::*;
 
 pub fn handle_input(road: &mut Road) {
   if is_key_pressed(KeyCode::Escape) {
+    println!("{}",road.format_stats());
     std::process::exit(0);
     //todo implement first the statistic window appear, then exit after second press
   }

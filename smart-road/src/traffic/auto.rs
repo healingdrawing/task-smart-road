@@ -5,12 +5,12 @@ use std::time::Instant;
 
 #[derive(Debug, Clone)]
 pub struct Auto{
-  pub texture:Texture2D, // texture of the car
+  pub texture:Texture2D, // texture of the auto
   pub texture_angle:f32, // angle of texture rotation
-  pub init_time:Instant, // time when the car was created
-  pub start_time:Instant, // time when the car started moving
+  pub init_time:Instant, // time when the auto was created
+  pub start_time:Instant, // time when the auto started moving
   pub sum_dist:f32, // full distance between two way points
-  pub dist:f32, // distance car alredy moved between two way points
+  pub dist:f32, // distance auto alredy moved between two way points
   pub sign_x:f32, // sign of the x direction -1.0 or 1.0 . 0.0 default
   pub sign_y:f32, // sign of the y direction -1.0 or 1.0 . 0.0 default
   pub from_x:f32, // start point of the way(between two way points)
@@ -19,14 +19,14 @@ pub struct Auto{
   pub y:f32,
   pub to_x:f32, // target point of the way(between two way points)
   pub to_y:f32,
-  pub turbo:f32, // car speed multiplier. 0.0 default
-  pub moving:bool, // is the car moving now. when the move completed, the moving will be false. so new move can be started or car can be removed, if the move was the last in the way
+  pub turbo:f32, // auto speed multiplier. 0.0 default
+  pub moving:bool, // is the auto moving now. when the move completed, the moving will be false. so new move can be started or auto can be removed, if the move was the last in the way
 }
 
 impl Auto{
   /** 
    * xy is left upper corner of texture position on screen
-   * texture angle (degrees) in the initial moment when car added on screen.
+   * texture angle (degrees) in the initial moment when auto added on screen.
    Positive direction cw (microquad rule, looks like creator hates school math)
    */
   pub fn new(xy:&[f32;2], texture_angle:f32, texture:&Texture2D)->Self{
@@ -96,7 +96,7 @@ impl Auto{
       self.from_y = self.y;
       self.to_x = xy[0];
       self.to_y = xy[1];
-      self.start_time = std::time::Instant::now();
+      self.start_time = Instant::now();
       self.turbo = turbo;
       self.moving = true;
       // todo check. The texture at the moment aimed to bottom default
