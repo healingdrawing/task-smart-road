@@ -6,7 +6,7 @@ use super::{Road, way::To, Auto};
 impl<'a> Road<'a> {
   //todo extend to random texture
   /** random auto texture */
-  fn auto_texture(&self) -> &Texture2D { &self.textures.auto }
+  fn auto_texture(&self) -> &Texture2D { &self.textures.random_auto() }
 
   /** texture angle for initial auto position */
   fn texture_angle(&self, road:To) -> f32 {
