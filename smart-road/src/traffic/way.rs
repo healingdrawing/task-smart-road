@@ -8,21 +8,12 @@ pub enum To {
     /** West */ W,
 }
 
-/// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn(not used in code at the moment).
+/// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the vehicle accelerated after turn(not used in code at the moment).
 /// South(screen bottom) direction of sprite/ auto texture orientation is 0 degrees.
 /// Other elements is the coordinates of the path points x and y respectively.
 /**
  * ss means start to south then turn to south(no turn).
  * se means start to south then turn to east(turn left).
- * 
- * free_ss means the array of \[bool,bool\] for each point in ss, to manage place
- * for car moving.
- * The first element with index zero free_ss\[0\] includes array
- * of two boolean, where the free_ss\[0\]\[0\] means the boolean
- * for the control the global condition of the ss line (is the ss opens for
- * car moving over cross road, or another way turn now).
- * The ss\[0\]\[1\] does not used at the moment.
- * The free_ss parameter condition will be mutated by the smart road.
  * 
  * sum_ss means the full distance of the ss way in meters(converted from pixels)
  */
@@ -39,7 +30,7 @@ pub enum To {
   pub nw: [[u16;2]; 6],
   pub ws: [[u16;2]; 6],
   pub en: [[u16;2]; 6],
-  //turn right. controllable using queue. always open for cars
+  //turn right. controllable using queue. always open for vehicles
   pub sw: [[u16;2]; 6],
   pub ne: [[u16;2]; 6],
   pub es: [[u16;2]; 6],

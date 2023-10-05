@@ -16,9 +16,9 @@ pub fn window_conf() -> Conf {
 
 /** cell size of the box along x and y axes. Plan to use in lot of cases.
  * Width of the road(one lane).
- * Size of the car sprite with safe empty pixels around.
- * Distance between cars destination coordinates in the line,
- * before car starts move cross road
+ * Size of the vehicle sprite with safe empty pixels around.
+ * Distance between vehicles destination coordinates in the line,
+ * before vehicle starts move cross road
  * */
 pub const CS:u16 = 96;
 
@@ -27,6 +27,6 @@ pub const CS:u16 = 96;
  */
 pub const CM:u16 = 4;
 
-/** pixels per second, slow speed of the car */
+/** pixels per second, slow speed of the vehicle */
 pub const PXS:f32 = 96.0;
 

@@ -20,12 +20,12 @@ pub struct Road<'a> {
   pub textures: &'a Textures,
   pub spam: bool,
   pub free: Free,
-  /*turn left section to allow one car per turn */
+  /*turn left section to allow one vehicle per turn */
   pub nw_free: bool,
   pub se_free: bool,
   pub ws_free: bool,
   pub en_free: bool,
-  /*no turn section to allow one car per turn */
+  /*no turn section to allow one vehicle per turn */
   pub nn_free: bool,
   pub ss_free: bool,
   pub ww_free: bool,
