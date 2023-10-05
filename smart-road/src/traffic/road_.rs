@@ -105,7 +105,7 @@ impl<'a> Road<'a> {
 
   pub fn format_stats(&self) -> String {
     format!(
-      "Simulation time: {:.2}\nAutos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}\nPress Esc to exit",
+      "Simulation time: {:.2} s\nAutos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}\nPress Esc to exit",
       self.simulation_end_time.duration_since(self.simulation_init_time).as_secs_f32(),
       self.autos_passed,
       self.max_speed,
