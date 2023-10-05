@@ -1,7 +1,7 @@
 use crate::draw::Textures;
 use macroquad::prelude::*;
 
-pub fn draw_roads(textures: &Textures) {
+pub fn draw_road(textures: &Textures) {
     let texture =  &textures.road;
 
     draw_texture_ex(

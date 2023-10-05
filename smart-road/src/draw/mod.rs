@@ -1,16 +1,7 @@
-mod car;
-mod lights;
-mod path;
-mod roads;
+mod road;
 
 mod textures;
 
-pub use roads::draw_roads;
-
-pub use car::draw_car;
-
-// pub use lights::draw_light;
-
-pub use path::draw_path;
+pub use road::draw_road;
 
 pub use textures::Textures;

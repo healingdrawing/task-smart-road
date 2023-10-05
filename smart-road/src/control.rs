@@ -1,38 +1,33 @@
-use crate::traffic::{Direction, TrafficState, Road};
+use crate::traffic::Road;
 use macroquad::prelude::*;
 
-pub fn handle_input(traffic_state: &mut TrafficState, road: &mut Road) {
+pub fn handle_input(road: &mut Road) {
   if is_key_pressed(KeyCode::Escape) {
     std::process::exit(0);
     //todo implement first the statistic window appear, then exit after second press
   }
 
   if is_key_pressed(KeyCode::Up) {
-    // traffic_state.add_car(Direction::S);
     road.try_add_auto_north_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Down) {
-    // traffic_state.add_car(Direction::N);
     road.try_add_auto_south_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Right) {
-    // traffic_state.add_car(Direction::W);
     road.try_add_auto_east_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::Left) {
-    // traffic_state.add_car(Direction::E);
     road.try_add_auto_west_directed();
     road.no_spam();
   }
 
   if is_key_pressed(KeyCode::R) {
-    // traffic_state.add_car_random();
     road.try_add_auto_random_directed();
     road.no_spam();
   }

@@ -80,11 +80,10 @@ impl Auto{
       self.y,
       WHITE,
       DrawTextureParams {
-          rotation: self.texture_angle,
-          ..Default::default()
+        rotation: self.texture_angle,
+        ..Default::default()
       },
-  );
-    // Implement your drawing logic here
+    );
   }
 
   pub fn animate_to(&mut self, xy:&[f32;2], turbo: f32) {

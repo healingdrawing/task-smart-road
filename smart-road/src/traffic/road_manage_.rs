@@ -1,12 +1,10 @@
-use super::{Road, stack::LimitedStack, Auto, way::To, road_::Free};
+use super::{Road, stack::LimitedStack, Auto, way::To};
 
 impl<'a> Road<'a> {
     
-  pub fn way_point_is_free(&self, oldxy:&[u16;2], xy:&[u16;2], lane_autos:&LimitedStack<Auto>) -> bool {
+  pub fn way_point_is_free(&self, xy:&[u16;2], lane_autos:&LimitedStack<Auto>) -> bool {
     let free =
     lane_autos.iter().all(|auto| auto.to_x != xy[0].into() || auto.to_y != xy[1].into() );
-    // println!("free: {}", free);
-    // println!("free: {}, oldxy {:#?}, xy {:#?} , autos {:#?}", free, oldxy, xy, lane_autos); //todo hide
     free
   }
 
@@ -32,7 +30,7 @@ impl<'a> Road<'a> {
       &self.autos.nn, &self.autos.ss, &self.autos.ww, &self.autos.ee,
     ];
     for (way_prelast_point, autos) in ways_prelast_points.iter().zip(autos.iter()) {
-      if !self.way_point_is_free( &[0,0], way_prelast_point, autos) {
+      if !self.way_point_is_free( way_prelast_point, autos) {
         free = false;
         break;
       }
@@ -63,10 +61,6 @@ impl<'a> Road<'a> {
     self.manage_turn_left(To::E);
 
     self.reset_free();
-    // self.manage_ne();
-    // self.manage_sw();
-    // self.manage_wn();
-    // self.manage_es();
   }
 
   

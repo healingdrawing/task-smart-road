@@ -47,7 +47,6 @@ impl<'a> Road<'a> {
             2.2,
           );
         } else if self.way_point_is_free(
-          &way[target+1],
           &way[target + 2],
           match to{
             To::N => &self.autos.ne,
