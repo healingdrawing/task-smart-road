@@ -2,9 +2,11 @@ use macroquad::window::Conf;
 
 pub const WINDOW_SIZE: i32 = 1152;
 
+pub const WINDOW_TITLE : &str = "Task \"smart-road\" . Grit:lab Åland Islands 2023 . Controls: [S] - on/off spam vehicles, [R] - random vehicle, [Esc] - statistics -> exit";
+
 pub fn window_conf() -> Conf {
     Conf {
-        window_title: "task smart-road".to_owned(),
+        window_title: WINDOW_TITLE.to_owned(),
         window_width: WINDOW_SIZE,
         window_height: WINDOW_SIZE,
         window_resizable: false,
