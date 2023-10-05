@@ -5,13 +5,13 @@ pub const WINDOW_SIZE: i32 = 1152;
 pub const WINDOW_TITLE : &str = "Task \"smart-road\" . Grit:lab Åland Islands 2023 . Controls: [S] - on/off spam vehicles, [R] - random vehicle, [Esc] - statistics -> exit";
 
 pub fn window_conf() -> Conf {
-    Conf {
-        window_title: WINDOW_TITLE.to_owned(),
-        window_width: WINDOW_SIZE,
-        window_height: WINDOW_SIZE,
-        window_resizable: false,
-        ..Default::default()
-    }
+  Conf {
+    window_title: WINDOW_TITLE.to_owned(),
+    window_width: WINDOW_SIZE,
+    window_height: WINDOW_SIZE,
+    window_resizable: false,
+    ..Default::default()
+  }
 }
 
 /** cell size of the box along x and y axes. Plan to use in lot of cases.
