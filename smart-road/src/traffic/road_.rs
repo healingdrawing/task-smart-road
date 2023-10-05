@@ -31,6 +31,10 @@ pub struct Road<'a> {
   pub ww_free: bool,
   pub ee_free: bool,
   /*statistic section */
+  /** time stamp from the start of the simulation */
+  pub simulation_init_time: Instant,
+  /** time stamp of the moment when statistics was collected */
+  pub simulation_end_time: Instant,
   /** how many autos passed the crossroad */
   pub autos_passed: u128,
   /** max speed achieved by auto on the full way */
@@ -66,6 +70,8 @@ impl<'a> Road<'a> {
       ss_free: true,
       ww_free: false,
       ee_free: false,
+      simulation_init_time: Instant::now(),
+      simulation_end_time: Instant::now(),
       autos_passed: 0,
       max_speed: 0f32,
       min_speed: f32::MAX,
@@ -100,7 +106,8 @@ impl<'a> Road<'a> {
 
   pub fn format_stats(&self) -> String {
     format!(
-      "Autos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}",
+      "Simulation time: {:.2}\nAutos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}\nPress Esc to exit",
+      self.simulation_end_time.duration_since(self.simulation_init_time).as_secs_f32(),
       self.autos_passed,
       self.max_speed,
       if self.min_speed == f32::MAX {0f32} else {self.min_speed},

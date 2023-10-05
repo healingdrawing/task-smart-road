@@ -9,7 +9,7 @@ use config::window_conf;
 
 use control::handle_input;
 
-use crate::draw::{draw_road, Textures};
+use crate::draw::{draw_road, draw_stats, Textures};
 use crate::traffic::Road;
 
 #[macroquad::main(window_conf)]
@@ -23,7 +23,9 @@ async fn main() {
 
     clear_background(BLACK); //todo delete, not sure it needed, because road has no transparency
 
-    if road.show_stats {} else {
+    if road.show_stats {
+      draw_stats(&road);
+    } else {
       draw_road(&textures);
       
       road.update();

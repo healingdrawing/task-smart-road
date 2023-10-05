@@ -1,3 +1,5 @@
+use std::time::Instant;
+
 use crate::traffic::Road;
 use macroquad::prelude::*;
 
@@ -6,8 +8,8 @@ pub fn handle_input(road: &mut Road) {
     if road.show_stats{
       std::process::exit(0);
     } else {
+      road.simulation_end_time = Instant::now();
       road.show_stats = true;
-      println!("{}",road.format_stats());
     }
     
     //todo implement first the statistic window appear, then exit after second press
