@@ -21,14 +21,13 @@ async fn main() {
   loop {
     handle_input(&mut road);
 
-    clear_background(BLACK); //todo delete, not sure it needed, because road has no transparency
+    clear_background(BLACK);
 
     if road.show_stats {
       draw_stats(&road);
     } else {
-      draw_road(&textures);
-      
-      road.update();
+      draw_road(&textures); // draw background
+      road.update(); // calculate changes
     }
     
     next_frame().await

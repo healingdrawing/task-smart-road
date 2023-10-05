@@ -10,8 +10,8 @@ impl<'a> Road<'a> {
 
   /** all turn left prelast way points
    * and all no turn last way points
-   * not targeted by autos
-   * so time for autos to turn left and no turn, according to the road control
+   * not targeted by autos.
+   * So time for autos to turn left and no turn, according to the road control
    */
   pub fn road_free(&self) -> bool {
     let mut free = true;

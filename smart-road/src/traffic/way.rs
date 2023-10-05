@@ -8,8 +8,8 @@ pub enum To {
     /** West */ W,
 }
 
-/// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn.
-/// South(screen bottom) direction is 0 degrees.
+/// First element of each way includes the initial angle of texture rotation, and the texture rotation angle on the way to last point of the path, when the car accelerated after turn(not used in code at the moment).
+/// South(screen bottom) direction of sprite/ auto texture orientation is 0 degrees.
 /// Other elements is the coordinates of the path points x and y respectively.
 /**
  * ss means start to south then turn to south(no turn).

@@ -12,7 +12,6 @@ pub fn handle_input(road: &mut Road) {
       road.show_stats = true;
     }
     
-    //todo implement first the statistic window appear, then exit after second press
   }
 
   if is_key_pressed(KeyCode::Up) {

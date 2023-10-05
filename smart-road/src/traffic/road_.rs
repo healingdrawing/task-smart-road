@@ -90,7 +90,6 @@ impl<'a> Road<'a> {
 
     self.manage_autos();
     self.animate_step();
-    // println!("update"); //todo hide
   }
 
   /** update_stats update statistics according to task requirements */
@@ -130,7 +129,6 @@ impl<'a> Road<'a> {
   }
 
   fn switch_to_vertical(&mut self) {
-    // println!("switch_to_vertical"); //todo hide
     self.nw_free = true;
     self.se_free = true;
     self.ws_free = false;
@@ -142,7 +140,6 @@ impl<'a> Road<'a> {
   }
 
   fn switch_to_horizontal(&mut self) {
-    // println!("switch_to_horizontal"); //todo hide
     self.nw_free = false;
     self.se_free = false;
     self.ws_free = true;

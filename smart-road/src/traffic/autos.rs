@@ -2,7 +2,7 @@ use crate::traffic::auto::Auto;
 use crate::traffic::stack::LimitedStack;
 
 /**the limited stack of autos for each way. Plan to use it for iteration
- * capacity for each stack is length of the way minus one,
+ * capacity for each stack is length of the way minus one(hardcoded),
  * because the first element of the way is not a point
  * but rotation angles for texture
  */

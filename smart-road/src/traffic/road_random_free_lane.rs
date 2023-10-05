@@ -104,8 +104,8 @@ impl<'a> Road<'a> {
     }
   }
 
+  /** lane is free to add new auto to first point of the lane */
   fn lane_is_free(&self, road_direction:To, lane_number: u8) -> bool {
-    // todo
     let lane_autos = match road_direction {
       To::N => match lane_number {
         0 => &self.autos.ne, // turn right
@@ -129,26 +129,12 @@ impl<'a> Road<'a> {
       }
     };
 
-    //todo implement mulitstatement, then remove comments
-    /*no autos targeted to lane first point and no targeted to second point OR
-    no autos targeted to lane first point and there is auto targeted to second point, but this auto does not move, so this auto already in destination point (on second point), so no collision in add moment
-     */
-
     let first_free = self.no_autos_targeted_to_lane_first_point(road_direction, lane_number, lane_autos);
     let second_free = self.no_autos_targeted_to_lane_second_point(road_direction, lane_number, lane_autos);
     let second_done = self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos);
 
-    if lane_number == 0 {
-      // println!("===\nfirst_free: {}, second_free: {}, second_done: {}", first_free, second_free, second_done); //todo hide
-    }
     first_free && (second_free || second_done)
 
-    // self.no_autos_targeted_to_lane_first_point(road_direction, lane_number, lane_autos)
-    // && (
-    //   self.no_autos_targeted_to_lane_second_point(road_direction, lane_number, lane_autos)
-    //   ||
-    //   self.auto_targeted_to_second_point_does_not_move(road_direction, lane_number, lane_autos)
-    // ) //todo check it twice, does not look clear
   }
 
   
@@ -170,7 +156,6 @@ impl<'a> Road<'a> {
       let lane_number = choices.remove(index);
 
       if self.lane_is_free(road, lane_number) {
-        // println!("road: {:?} lane_number: {}", road, lane_number); //todo hide
         return lane_number;
       }
     }
