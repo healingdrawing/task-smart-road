@@ -46,6 +46,8 @@ pub struct Road<'a> {
    * one car hit another, but finally they show 0 close calls in statistics.
    */
   pub close_calls: u128,
+  /** show statistics on screen, after first Esc press */
+  pub show_stats: bool,
 }
 
 impl<'a> Road<'a> {
@@ -65,11 +67,12 @@ impl<'a> Road<'a> {
       ww_free: false,
       ee_free: false,
       autos_passed: 0,
-      max_speed: f32::MIN,
+      max_speed: 0f32,
       min_speed: f32::MAX,
-      max_time: f32::MIN,
+      max_time: 0f32,
       min_time: f32::MAX,
       close_calls: 0,
+      show_stats: false,
     }
   }
 
@@ -100,9 +103,9 @@ impl<'a> Road<'a> {
       "Autos passed: {}\nMax speed: {:.2} m/s\nMin speed: {:.2} m/s\nMax time: {:.2} s\nMin time: {:.2} s\nClose calls: {} \nCollisions: {}",
       self.autos_passed,
       self.max_speed,
-      self.min_speed,
+      if self.min_speed == f32::MAX {0f32} else {self.min_speed},
       self.max_time,
-      self.min_time,
+      if self.min_time == f32::MAX {0f32} else {self.min_time},
       self.close_calls, //idiots from 01-edu in task require close calls number, but in audit they also require collisions number
       self.close_calls,
     )

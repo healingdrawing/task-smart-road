@@ -23,9 +23,11 @@ async fn main() {
 
     clear_background(BLACK); //todo delete, not sure it needed, because road has no transparency
 
-    draw_road(&textures);
-    
-    road.update();
+    if road.show_stats {} else {
+      draw_road(&textures);
+      
+      road.update();
+    }
     
     next_frame().await
   }
