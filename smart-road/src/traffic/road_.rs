@@ -18,7 +18,7 @@ pub struct Road<'a> {
   pub way: Way,
   pub autos: Autos,
   pub textures: &'a Textures,
-  pub spam: bool,
+  pub spam_autos: bool,
   pub free: Free,
   /*turn left section to allow one vehicle per turn */
   pub nw_free: bool,
@@ -60,7 +60,7 @@ impl<'a> Road<'a> {
       way: Way::new(),
       autos: Autos::new(),
       textures,
-      spam: false,
+      spam_autos: false,
       free: Free::VERTICAL,
       nw_free: true,
       se_free: true,
@@ -84,7 +84,7 @@ impl<'a> Road<'a> {
 
   pub fn update(&mut self) {
 
-    if self.spam {
+    if self.spam_autos {
       self.spam_autos();
     }
 

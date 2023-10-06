@@ -112,11 +112,15 @@ impl<'a> Road<'a> {
   }
 
   pub fn switch_spam(&mut self) {
-    self.spam = !self.spam;
+    self.spam_autos = !self.spam_autos;
   }
 
   pub fn no_spam(&mut self) {
-    self.spam = false;
+    self.spam_autos = false;
+  }
+
+  pub fn spam(&mut self) {
+    self.spam_autos = true;
   }
 
 }

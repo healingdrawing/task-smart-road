@@ -35,7 +35,10 @@ pub fn handle_input(road: &mut Road) {
   }
 
   if is_key_pressed(KeyCode::R) {
-    road.try_add_auto_random_directed();
+    road.spam();
+  }
+
+  if is_key_released(KeyCode::R) {
     road.no_spam();
   }
 
