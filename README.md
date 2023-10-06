@@ -8,6 +8,8 @@ grit:lab Åland Islands 2023
 
 Read the `readme.md` file inside the `smart-road` folder to get info how to run the solution.
 
+![screenshot](screenshot.png)
+
 ## task description  
 https://github.com/01-edu/public/blob/245e7c32a1835ee171014fdb8ceaa281762420de/subjects/smart-road/README.md
 
