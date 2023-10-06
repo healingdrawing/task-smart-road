@@ -18,7 +18,7 @@ pub struct Road<'a> {
   pub way: Way,
   pub autos: Autos,
   pub textures: &'a Textures,
-  pub spam: bool,
+  pub spam_autos: bool,
   pub free: Free,
   /*turn left section to allow one vehicle per turn */
   pub nw_free: bool,
@@ -52,8 +52,6 @@ pub struct Road<'a> {
   pub close_calls: u128,
   /** show statistics on screen, after first Esc press */
   pub show_stats: bool,
-
-  pub random_car_generation: bool,
 }
 
 impl<'a> Road<'a> {
@@ -62,7 +60,7 @@ impl<'a> Road<'a> {
       way: Way::new(),
       autos: Autos::new(),
       textures,
-      spam: false,
+      spam_autos: false,
       free: Free::VERTICAL,
       nw_free: true,
       se_free: true,
@@ -81,13 +79,12 @@ impl<'a> Road<'a> {
       min_time: f32::MAX,
       close_calls: 0,
       show_stats: false,
-      random_car_generation: false,
     }
   }
 
   pub fn update(&mut self) {
 
-    if self.spam {
+    if self.spam_autos {
       self.spam_autos();
     }
 

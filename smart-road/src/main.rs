@@ -28,11 +28,6 @@ async fn main() {
     } else {
       draw_road(&textures); // draw background
       road.update(); // calculate changes
-
-      if road.random_car_generation {
-        road.try_add_auto_random_directed();
-        road.no_spam();
-      }
     }
     
     next_frame().await
