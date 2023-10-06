@@ -105,10 +105,7 @@ impl<'a> Road<'a> {
 
   /** when self.spam is true, fill the road as possible */
   pub fn spam_autos(&mut self) {
-    self.try_add_auto_north_directed();
-    self.try_add_auto_south_directed();
-    self.try_add_auto_west_directed();
-    self.try_add_auto_east_directed();
+    self.try_add_auto_random_directed();
   }
 
   pub fn switch_spam(&mut self) {
