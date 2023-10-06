@@ -12,7 +12,7 @@ The `rust` programming language must be installed.
 
 Control keys:
 - [ `← ↑ → ↓` ] - generate the vehicle on the road
-- [ `R` ] - generate the vehicle randomly
+- [ `R` ] - generate the vehicles randomly
 - [ `S` ] - turn on/off the spam mode
 - [ `Esc` ] - show the statistics and exit the application
 
