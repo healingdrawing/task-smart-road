@@ -68,10 +68,6 @@ impl<'a> Road<'a> {
             );  
           }
 
-          // autos_iter.nth(auto_number).unwrap().animate_to(
-          //   &way[target + 2].map(|x| x.into()),
-          //   2.0,
-          // );
         } else if self.way_point_is_free(
           &way[target + 2],
           match to{
