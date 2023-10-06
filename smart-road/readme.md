@@ -18,8 +18,8 @@ Control keys:
 
 ## creators:
 Lady Korin, fill this please and also add Jere's credentials, not sure how he wants it to be shown. After that remove this comment.
-- Korin's credentials
-- Jere's credentials
+- [blueskiy01](https://github.com/blueskiy01)
+- [J≡r≡](https://github.com/Jeresss)
 - [healingdrawing](https://healingdrawing.github.io)
 
 Project structure nested from the [road_intersection](https://public.01-edu.org/subjects/road_intersection/) raid solution by [mer.pw](https://mer.pw)
