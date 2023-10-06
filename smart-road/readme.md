@@ -17,7 +17,6 @@ Control keys:
 - [ `Esc` ] - show the statistics and exit the application
 
 ## creators:
-Lady Korin, fill this please and also add Jere's credentials, not sure how he wants it to be shown. After that remove this comment.
 - [blueskiy01](https://github.com/blueskiy01)
 - [J≡r≡](https://github.com/Jeresss)
 - [healingdrawing](https://healingdrawing.github.io)
