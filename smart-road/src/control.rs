@@ -35,8 +35,8 @@ pub fn handle_input(road: &mut Road) {
   }
 
   if is_key_pressed(KeyCode::R) {
-    road.try_add_auto_random_directed();
-    road.no_spam();
+    road.random_car_generation = !road.random_car_generation; // Toggle the flag
+  
   }
 
   if is_key_pressed(KeyCode::S) {

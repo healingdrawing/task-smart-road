@@ -52,6 +52,8 @@ pub struct Road<'a> {
   pub close_calls: u128,
   /** show statistics on screen, after first Esc press */
   pub show_stats: bool,
+
+  pub random_car_generation: bool,
 }
 
 impl<'a> Road<'a> {
@@ -79,6 +81,7 @@ impl<'a> Road<'a> {
       min_time: f32::MAX,
       close_calls: 0,
       show_stats: false,
+      random_car_generation: false,
     }
   }
 
