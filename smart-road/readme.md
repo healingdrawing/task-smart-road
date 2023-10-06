@@ -11,7 +11,7 @@ The planned cross road size is 1152px x 1152px.
 The `rust` programming language must be installed.
 
 Control keys:
-- [ `←	↑	→	↓` ] - generate the vehicle on the road
+- [ `← ↑ → ↓` ] - generate the vehicle on the road
 - [ `R` ] - generate the vehicle randomly
 - [ `S` ] - turn on/off the spam mode
 - [ `Esc` ] - show the statistics and exit the application
